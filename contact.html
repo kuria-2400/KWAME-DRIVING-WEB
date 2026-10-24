@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Lesson | Kwame Driving School &amp; Computer College</title>
+  <meta name="description" content="Book a driving lesson with Kwame Driving School. Call, text, or send a booking request online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car">🚗</span></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">K</span>
+        <span>Kwame Driving<small>&amp; Computer College</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lessons.html">Driving</a></li>
+        <li><a href="computers.html">Computer</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="btn btn--primary">Book Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <img src="images/city-street.jpg" alt="" data-parallax="0.25" />
+      <div class="container">
+        <div class="crumbs"><a href="index.html">Home</a> / Contact</div>
+        <h1 class="reveal">Book or Enroll</h1>
+        <p class="reveal" style="--d:.1s">Driving lessons or computer classes, in three quick steps.</p>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container">
+        <div class="booking reveal">
+          <aside class="booking-side">
+            <img src="images/dusk-drive.jpg" alt="" loading="lazy" />
+            <div>
+              <span class="eyebrow">Prefer to talk?</span>
+              <h2>We're a call away.</h2>
+              <p>Calling or texting is the fastest way to book.</p>
+            </div>
+            <ul class="contact-list">
+              <li><a href="tel:+15551234567"><span class="icon">📞</span><div><strong>Call or text</strong><span class="ph">(555) 123-4567</span></div></a></li>
+              <li><a href="mailto:info@kwamedrivingschool.com"><span class="icon">✉️</span><div><strong>Email</strong><span class="ph">info@kwamedrivingschool.com</span></div></a></li>
+              <li><div><span class="icon">🕑</span><div><strong>Hours</strong><span class="ph">Mon–Sat 8am–7pm</span></div></div></li>
+            </ul>
+          </aside>
+
+          <div class="booking-main">
+            <!-- Replace YOUR_FORM_ID with a real Formspree form ID (see README).
+                 Until then, submitting opens the visitor's email app instead. -->
+            <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-booking data-email="info@kwamedrivingschool.com" novalidate>
+              <ol class="wizard-progress" aria-label="Booking steps">
+                <li>1 · Course</li>
+                <li>2 · Time</li>
+                <li>3 · Details</li>
+              </ol>
+
+              <!-- Step 1 -->
+              <div class="step-panel">
+                <h3>What do you want to learn?</h3>
+                <p class="choice-group">🚗 Driving</p>
+                <div class="choice-grid">
+                  <label class="choice"><input type="radio" name="package" value="beginner" required /><span class="card-in"><img src="images/start-engine.jpg" alt="" loading="lazy" /><span class="label">Beginner</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="road-test" /><span class="card-in"><img src="images/traffic-light.jpg" alt="" loading="lazy" /><span class="label">Road Test</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="refresher" /><span class="card-in"><img src="images/highway-trucks.jpg" alt="" loading="lazy" /><span class="label">Highway / Refresher</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="teen" /><span class="card-in"><img src="images/teen-drivers.jpg" alt="" loading="lazy" /><span class="label">Teen Driver</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="single" /><span class="card-in"><img src="images/car-keys.jpg" alt="" loading="lazy" /><span class="label">Single Lesson</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="starter" /><span class="card-in"><img src="images/hero-driver.jpg" alt="" loading="lazy" /><span class="label">Starter Pack</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="ten" /><span class="card-in"><img src="images/hands-on-wheel.jpg" alt="" loading="lazy" /><span class="label">10-Lesson Pack</span></span></label>
+                </div>
+                <p class="choice-group">💻 Computer</p>
+                <div class="choice-grid">
+                  <label class="choice"><input type="radio" name="package" value="comp-basics" /><span class="card-in"><img src="images/comp-basics.jpg" alt="" loading="lazy" /><span class="label">Computer Basics</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="comp-office" /><span class="card-in"><img src="images/comp-office.jpg" alt="" loading="lazy" /><span class="label">Microsoft Office</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="comp-internet" /><span class="card-in"><img src="images/comp-internet.jpg" alt="" loading="lazy" /><span class="label">Internet &amp; Email</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="comp-design" /><span class="card-in"><img src="images/comp-design.jpg" alt="" loading="lazy" /><span class="label">Graphic Design</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="comp-coding" /><span class="card-in"><img src="images/comp-coding.jpg" alt="" loading="lazy" /><span class="label">Web &amp; Coding</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="comp-accounting" /><span class="card-in"><img src="images/comp-accounting.jpg" alt="" loading="lazy" /><span class="label">Accounting Software</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="comp-package" /><span class="card-in"><img src="images/comp-group.jpg" alt="" loading="lazy" /><span class="label">Computer Package</span></span></label>
+                  <label class="choice"><input type="radio" name="package" value="unsure" /><span class="card-in"><img src="images/road-ahead.jpg" alt="" loading="lazy" /><span class="label">Not sure yet</span></span></label>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="step-panel" hidden>
+                <h3>When works for you?</h3>
+                <div class="form">
+                  <div>
+                    <label class="field" for="date">Preferred start date</label>
+                    <input id="date" name="preferred_date" type="date" required />
+                  </div>
+                  <fieldset style="border:0;padding:0;margin:0">
+                    <legend class="field" style="font-weight:600;font-size:.9rem;color:var(--black);margin-bottom:8px">Preferred time</legend>
+                    <div class="seg time-pills">
+                      <label><input type="radio" name="preferred_time" value="Morning" required /><span>🌅 Morning</span></label>
+                      <label><input type="radio" name="preferred_time" value="Afternoon" /><span>☀️ Afternoon</span></label>
+                      <label><input type="radio" name="preferred_time" value="Evening" /><span>🌆 Evening</span></label>
+                      <label><input type="radio" name="preferred_time" value="Weekend" /><span>📅 Weekend</span></label>
+                      <label><input type="radio" name="preferred_time" value="Flexible" /><span>🔄 Flexible</span></label>
+                    </div>
+                  </fieldset>
+                  <!-- Driving only: hidden and skipped for computer courses -->
+                  <fieldset style="border:0;padding:0;margin:0" data-only="driving">
+                    <legend class="field" style="font-weight:600;font-size:.9rem;color:var(--black);margin-bottom:8px">Permit / license</legend>
+                    <div class="seg">
+                      <label><input type="radio" name="permit_status" value="Learner's permit" required /><span>Learner's permit</span></label>
+                      <label><input type="radio" name="permit_status" value="Full license" /><span>Full license</span></label>
+                      <label><input type="radio" name="permit_status" value="Applying" /><span>Applying</span></label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="step-panel" hidden>
+                <h3>Where can we reach you?</h3>
+                <div class="form">
+                  <div class="form-row">
+                    <div>
+                      <label class="field" for="name">Full name</label>
+                      <input id="name" name="name" type="text" autocomplete="name" required />
+                    </div>
+                    <div>
+                      <label class="field" for="phone">Phone</label>
+                      <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="field" for="email">Email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required />
+                  </div>
+                  <div data-only="driving">
+                    <label class="field" for="pickup">Pickup area</label>
+                    <input id="pickup" name="pickup_location" type="text" placeholder="Neighborhood, school, or address" />
+                  </div>
+                  <div>
+                    <label class="field" for="message">Anything else? <span class="muted">(optional)</span></label>
+                    <textarea id="message" name="message" placeholder="Test date, experience level, questions…"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <p class="form-error" role="alert"></p>
+              <div class="wizard-nav">
+                <button type="button" class="btn btn--ghost" data-back>← Back</button>
+                <button type="button" class="btn btn--black" data-next style="margin-left:auto">Next <span class="arrow">→</span></button>
+                <button type="submit" class="btn btn--primary" data-submit style="margin-left:auto">Send Request ✓</button>
+              </div>
+              <p class="form-note">Requests aren't confirmed until we contact you.</p>
+              <div class="form-status" role="status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Service area</span>
+          <h2>We pick you up</h2>
+          <p class="ph">Your City · Neighborhood A · Neighborhood B · Town C</p>
+        </div>
+        <!-- Swap this box for a Google Maps embed of the service area -->
+        <div class="map-embed reveal">🗺️ Service-area map goes here<br><small>(paste a Google Maps embed)</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-photos" aria-hidden="true">
+      <img src="images/hands-on-wheel.jpg" alt="" loading="lazy" />
+      <img src="images/comp-typing.jpg" alt="" loading="lazy" />
+      <img src="images/traffic-light.jpg" alt="" loading="lazy" />
+      <img src="images/comp-design.jpg" alt="" loading="lazy" />
+      <img src="images/mirror-check.jpg" alt="" loading="lazy" />
+      <img src="images/comp-coding.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo"><span class="logo-mark">K</span><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
+          <p>Driving lessons and computer courses in <span class="ph">Your City</span>.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="lessons.html">Driving</a></li>
+            <li><a href="computers.html">Computer</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Driving</h4>
+          <ul>
+            <li><a href="lessons.html#beginner">Beginner</a></li>
+            <li><a href="lessons.html#road-test">Road Test Prep</a></li>
+            <li><a href="lessons.html#refresher">Refresher</a></li>
+            <li><a href="lessons.html#teen">Teen Drivers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Computer</h4>
+          <ul>
+            <li><a href="computers.html#basics">Computer Basics</a></li>
+            <li><a href="computers.html#office">Microsoft Office</a></li>
+            <li><a href="computers.html#design">Graphic Design</a></li>
+            <li><a href="computers.html#coding">Web &amp; Coding</a></li>
+            <li><a href="computers.html#packages">Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a class="ph" href="tel:+15551234567">📞 (555) 123-4567</a></li>
+            <li><a class="ph" href="mailto:info@kwamedrivingschool.com">✉️ info@kwamedrivingschool.com</a></li>
+            <li class="ph">🕑 Mon–Sat, 8am–7pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> Kwame Driving School &amp; Computer College</span>
+        <span class="ph">License #: XXXXXXX</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

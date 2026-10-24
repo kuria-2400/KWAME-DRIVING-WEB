@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driving Lessons | Kwame Driving School &amp; Computer College</title>
+  <meta name="description" content="Beginner driving lessons, road test prep, refresher and highway lessons, and teen driver training in Your City." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car">🚗</span></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">K</span>
+        <span>Kwame Driving<small>&amp; Computer College</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lessons.html">Driving</a></li>
+        <li><a href="computers.html">Computer</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="btn btn--primary">Book Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <img src="images/hands-on-wheel.jpg" alt="" data-parallax="0.25" />
+      <div class="container">
+        <div class="crumbs"><a href="index.html">Home</a> / Driving</div>
+        <h1 class="reveal">Driving Lessons</h1>
+        <p class="reveal" style="--d:.1s">From your first turn of the key to test day and beyond.</p>
+      </div>
+    </section>
+
+    <!-- Lesson explorer -->
+    <section class="section">
+      <div class="container" data-tabs>
+        <div class="section-head reveal">
+          <span class="eyebrow">Explore</span>
+          <h2>Pick your lesson</h2>
+        </div>
+
+        <div class="explorer-tabs reveal" role="tablist" aria-label="Lesson types">
+          <button role="tab" type="button" id="tab-beginner" aria-controls="beginner"><img src="images/start-engine.jpg" alt="" />Beginner</button>
+          <button role="tab" type="button" id="tab-road-test" aria-controls="road-test"><img src="images/traffic-light.jpg" alt="" />Road Test</button>
+          <button role="tab" type="button" id="tab-refresher" aria-controls="refresher"><img src="images/highway-trucks.jpg" alt="" />Highway &amp; Refresher</button>
+          <button role="tab" type="button" id="tab-teen" aria-controls="teen"><img src="images/teen-drivers.jpg" alt="" />Teen Drivers</button>
+        </div>
+
+        <div class="explorer-panel" role="tabpanel" id="beginner" data-slug="beginner" aria-labelledby="tab-beginner">
+          <div class="explorer-media">
+            <img src="images/start-engine.jpg" alt="Turning the key in the ignition" />
+            <img src="images/dual-control.jpg" alt="Dual-control training car interior" loading="lazy" />
+            <img src="images/parking-lot.jpg" alt="Practicing in a quiet parking lot" loading="lazy" />
+            <span class="chip">🔰 Never driven before</span>
+          </div>
+          <div class="explorer-text">
+            <h2>Beginner</h2>
+            <div class="meta"><span>⏱ 60-min lessons</span><span>👤 Permit holders</span></div>
+            <ul class="skill-chips">
+              <li>Car controls</li><li>Steering &amp; braking</li><li>Turns</li><li>Intersections</li><li>Lane changes</li><li>Hazard scanning</li>
+            </ul>
+            <a href="contact.html?package=beginner" class="btn btn--primary">Book Beginner <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="explorer-panel" role="tabpanel" id="road-test" data-slug="road-test" aria-labelledby="tab-road-test" hidden>
+          <div class="explorer-media">
+            <img src="images/traffic-light.jpg" alt="Traffic light and turn sign" loading="lazy" />
+            <img src="images/parking-lot.jpg" alt="Parking practice" loading="lazy" />
+            <img src="images/mirror-check.jpg" alt="Checking the side mirror" loading="lazy" />
+            <span class="chip">✅ Test-day ready</span>
+          </div>
+          <div class="explorer-text">
+            <h2>Road Test Prep</h2>
+            <div class="meta"><span>⏱ 60-min lessons</span><span>🚗 Our car on test day</span></div>
+            <ul class="skill-chips">
+              <li>Parallel parking</li><li>3-point turns</li><li>Backing up</li><li>Mock road test</li><li>Local test routes</li><li>Warm-up lesson</li>
+            </ul>
+            <a href="contact.html?package=road-test" class="btn btn--primary">Book Road Test Prep <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="explorer-panel" role="tabpanel" id="refresher" data-slug="refresher" aria-labelledby="tab-refresher" hidden>
+          <div class="explorer-media">
+            <img src="images/highway-trucks.jpg" alt="Highway driving next to trucks" loading="lazy" />
+            <img src="images/night-highway.jpg" alt="Highway at night" loading="lazy" />
+            <img src="images/road-ahead.jpg" alt="Open road" loading="lazy" />
+            <span class="chip">🛣️ Licensed drivers</span>
+          </div>
+          <div class="explorer-text">
+            <h2>Highway &amp; Refresher</h2>
+            <div class="meta"><span>⏱ 60–90 min</span><span>👤 Rusty or anxious drivers</span></div>
+            <ul class="skill-chips">
+              <li>Merging</li><li>Exits</li><li>Lane discipline</li><li>Night driving</li><li>Bad weather</li><li>Tight parking</li>
+            </ul>
+            <a href="contact.html?package=refresher" class="btn btn--primary">Book a Refresher <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="explorer-panel" role="tabpanel" id="teen" data-slug="teen" aria-labelledby="tab-teen" hidden>
+          <div class="explorer-media">
+            <img src="images/teen-drivers.jpg" alt="Young drivers beside a car" loading="lazy" />
+            <img src="images/city-street.jpg" alt="City street" loading="lazy" />
+            <img src="images/car-keys.jpg" alt="Car keys" loading="lazy" />
+            <span class="chip">🎒 Pickup from school</span>
+          </div>
+          <div class="explorer-text">
+            <h2>Teen Drivers</h2>
+            <div class="meta"><span>⏱ 60-min lessons</span><span>👪 Parent updates</span></div>
+            <ul class="skill-chips">
+              <li>School pickup</li><li>Lesson summaries</li><li>Practice tips</li><li>Hours logging</li><li>Defensive habits</li>
+            </ul>
+            <a href="contact.html?package=teen" class="btn btn--primary">Book Teen Lessons <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flip cards -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Skills you'll master</span>
+          <h2>Hover or tap to flip</h2>
+        </div>
+        <div class="flip-grid">
+          <button class="flip reveal" type="button" aria-pressed="false">
+            <span class="flip-inner">
+              <span class="flip-face flip-front"><img src="images/mirror-check.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Mirrors &amp; blind spots</span></span>
+              <span class="flip-face flip-back"><span class="icon">🪞</span><span class="t">Mirrors &amp; blind spots</span><span>Check, signal, shoulder-check, go. Every single time.</span></span>
+            </span>
+          </button>
+          <button class="flip reveal" style="--d:.1s" type="button" aria-pressed="false">
+            <span class="flip-inner">
+              <span class="flip-face flip-front"><img src="images/parking-lot.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Parking</span></span>
+              <span class="flip-face flip-back"><span class="icon">🅿️</span><span class="t">Parking</span><span>Parallel, angled, and reverse parking, practiced until it's easy.</span></span>
+            </span>
+          </button>
+          <button class="flip reveal" style="--d:.2s" type="button" aria-pressed="false">
+            <span class="flip-inner">
+              <span class="flip-face flip-front"><img src="images/intersection.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Intersections</span></span>
+              <span class="flip-face flip-back"><span class="icon">🚦</span><span class="t">Intersections</span><span>Right-of-way, protected turns, and four-way stops.</span></span>
+            </span>
+          </button>
+          <button class="flip reveal" style="--d:.3s" type="button" aria-pressed="false">
+            <span class="flip-inner">
+              <span class="flip-face flip-front"><img src="images/night-highway.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Highway merging</span></span>
+              <span class="flip-face flip-back"><span class="icon">🛣️</span><span class="t">Highway merging</span><span>Match speed, find your gap, and merge smoothly.</span></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-photo reveal zoom">
+          <img src="images/driver-sunset.jpg" alt="" loading="lazy" />
+          <span class="eyebrow">Not sure where to start?</span>
+          <h2>We'll find the right lesson for you.</h2>
+          <p>Call or text for a quick recommendation.</p>
+          <div class="actions">
+            <a href="tel:+15551234567" class="btn btn--primary ph">📞 (555) 123-4567</a>
+            <a href="pricing.html#estimator" class="btn btn--glass">Try the lesson estimator</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-photos" aria-hidden="true">
+      <img src="images/hands-on-wheel.jpg" alt="" loading="lazy" />
+      <img src="images/comp-typing.jpg" alt="" loading="lazy" />
+      <img src="images/traffic-light.jpg" alt="" loading="lazy" />
+      <img src="images/comp-design.jpg" alt="" loading="lazy" />
+      <img src="images/mirror-check.jpg" alt="" loading="lazy" />
+      <img src="images/comp-coding.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo"><span class="logo-mark">K</span><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
+          <p>Driving lessons and computer courses in <span class="ph">Your City</span>.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="lessons.html">Driving</a></li>
+            <li><a href="computers.html">Computer</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Driving</h4>
+          <ul>
+            <li><a href="lessons.html#beginner">Beginner</a></li>
+            <li><a href="lessons.html#road-test">Road Test Prep</a></li>
+            <li><a href="lessons.html#refresher">Refresher</a></li>
+            <li><a href="lessons.html#teen">Teen Drivers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Computer</h4>
+          <ul>
+            <li><a href="computers.html#basics">Computer Basics</a></li>
+            <li><a href="computers.html#office">Microsoft Office</a></li>
+            <li><a href="computers.html#design">Graphic Design</a></li>
+            <li><a href="computers.html#coding">Web &amp; Coding</a></li>
+            <li><a href="computers.html#packages">Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a class="ph" href="tel:+15551234567">📞 (555) 123-4567</a></li>
+            <li><a class="ph" href="mailto:info@kwamedrivingschool.com">✉️ info@kwamedrivingschool.com</a></li>
+            <li class="ph">🕑 Mon–Sat, 8am–7pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> Kwame Driving School &amp; Computer College</span>
+        <span class="ph">License #: XXXXXXX</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+  <a class="btn btn--primary mobile-cta" href="contact.html">Book or Enroll →</a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
