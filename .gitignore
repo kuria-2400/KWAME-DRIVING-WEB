@@ -1,0 +1,7 @@
+# Secrets: copy .env.example to .env on the server
+.env
+.env.*
+!.env.example
+
+# Editor settings
+.vscode/

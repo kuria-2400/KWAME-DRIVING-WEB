@@ -360,9 +360,18 @@
     back.addEventListener("click", () => { step--; render(); });
     render();
 
-    // Submits to Formspree (or any endpoint that accepts form POSTs).
-    // Until a real endpoint is set in the form's action, it opens the
-    // visitor's email app with the details filled in instead.
+    // The PHP backend (api/booking.php) needs a CSRF token tied to this visitor's
+    // session. The page is static HTML, so fetch one now.
+    const csrf = $("input[name=csrf_token]", form);
+    function loadToken() {
+      return fetch("api/csrf-token.php", { credentials: "same-origin", headers: { Accept: "application/json" } })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((reply) => { if (reply && reply.token) csrf.value = reply.token; })
+        .catch(() => {});
+    }
+    loadToken();
+
+    // Sends the request in the background; the visitor stays on the page.
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       // Enter in an earlier step submits the form natively; treat it as "Next"
@@ -370,29 +379,38 @@
       status.className = "form-status";
       if (!valid()) return;
 
-      const data = new FormData(form);
-      const action = form.getAttribute("action") || "";
-      if (!action || action.includes("YOUR_FORM_ID")) {
-        const body = [...data.entries()].map(([k, v]) => `${k}: ${v}`).join("\n");
-        location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent("Lesson booking request")}&body=${encodeURIComponent(body)}`;
-        return;
-      }
-
       submit.disabled = true;
+      const label = submit.textContent;
+      submit.textContent = "Sending…";
       try {
-        const res = await fetch(action, { method: "POST", body: data, headers: { Accept: "application/json" } });
-        if (!res.ok) throw new Error(res.statusText);
+        if (!csrf.value) await loadToken();
+        const res = await fetch(form.getAttribute("action"), {
+          method: "POST",
+          credentials: "same-origin",
+          headers: { Accept: "application/json", "X-CSRF-Token": csrf.value },
+          body: new FormData(form),
+        });
+        const reply = await res.json().catch(() => ({}));
+        if (!res.ok || reply.success !== true) {
+          // 422 = a field failed server-side checks; the server says which
+          throw Object.assign(new Error(reply.message || res.statusText), { shown: res.status === 422 || res.status === 429 || res.status === 403 });
+        }
         form.innerHTML = `
           <div class="success">
             <div class="check">✓</div>
             <h3>Request sent!</h3>
             <p class="muted">We'll call or text you within one business day to confirm your lesson.</p>
+            <p class="muted">Your reference: <strong data-ref></strong></p>
             <a href="index.html" class="btn btn--black">Back to home</a>
           </div>`;
-      } catch {
-        status.textContent = "Something went wrong sending your request. Please call or text us instead.";
+        $("[data-ref]", form).textContent = reply.reference || "";
+      } catch (error) {
+        status.textContent = error.shown && error.message
+          ? error.message
+          : "Something went wrong sending your request. Please call or text us instead.";
         status.classList.add("err");
         submit.disabled = false;
+        submit.textContent = label;
       }
     });
   }

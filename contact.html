@@ -65,9 +65,14 @@
           </aside>
 
           <div class="booking-main">
-            <!-- Replace YOUR_FORM_ID with a real Formspree form ID (see README).
-                 Until then, submitting opens the visitor's email app instead. -->
-            <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-booking data-email="kwamedrivingschool@gmail.com" novalidate>
+            <!-- Posts to the PHP backend (api/booking.php). The CSRF token is filled in by js/main.js. -->
+            <form class="form" action="api/booking.php" method="POST" data-booking novalidate>
+              <input type="hidden" name="csrf_token" value="" />
+              <!-- Spam trap: hidden from people, bots fill it in -->
+              <div class="sr-only" aria-hidden="true">
+                <label for="website">Leave this empty</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+              </div>
               <ol class="wizard-progress" aria-label="Booking steps">
                 <li>1 · Course</li>
                 <li>2 · Time</li>

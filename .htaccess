@@ -1,0 +1,12 @@
+# Apache rules for the site root.
+
+Options -Indexes
+ErrorDocument 404 /404.html
+
+# Never serve dotfiles (.env, .git, .htaccess) or backups.
+<FilesMatch "^\.|\.(sql|bak|log|ini)$">
+  Require all denied
+</FilesMatch>
+
+# Code and data folders are not public; only /api is.
+RedirectMatch 404 ^/(config|includes|database)(/|$)

@@ -8,7 +8,7 @@ Plain HTML/CSS/JS. No build step. Open `index.html` in a browser to view it.
 | `index.html` | Full-screen photo slideshow, "two schools" expanding panels, driving + computer photo tiles, "why us" cards, 4-step journey, animated stats, photo gallery, review carousel |
 | `lessons.html` | Driving: tabbed lesson explorer (photo collage per lesson), flip cards for key skills |
 | `computers.html` | Computer college: tabbed course explorer (Basics, Office, Internet, Design, Coding, Accounting), how classes work, computer packages, flip cards |
-| `pricing.html` | Driving/Computer switch for package cards (`pricing.html#computer` opens computer), FAQ |
+| `pricing.html` | Driving/Computer switch for package cards (`pricing.html#computer` opens computer) |
 | `contact.html` | 3-step booking wizard with photo choice cards, contact details, service-area map |
 | `404.html` | Shown by the host for broken links |
 
@@ -48,18 +48,52 @@ while editing, add `class="show-placeholders"` to the `<body>` tag (remove it be
 
 Find & replace across all pages:
 - `Mon–Sat 8am–5pm`: real hours
-- `24 hours'` cancellation notice on `pricing.html`
 - Prices on `pricing.html`
 - Computer package names, contents and prices: on **both** `computers.html` and `pricing.html`
 - Course durations, software names (Photoshop, CorelDRAW, QuickBooks…), class size, and certificate details on `computers.html`
 - Stats (pass rate, students, years): the `data-count` values on `index.html`
 - Reviews on `index.html`: use real reviews only
 
-## Make the booking form send emails
-1. Create a free form at https://formspree.io and copy its ID (e.g. `xyzabcd`).
-2. In `contact.html`, replace `YOUR_FORM_ID` in the form `action`.
+## PHP backend (booking form)
+The booking form on `contact.html` posts in the background to a PHP + MySQL backend.
+The visitor stays on the page and gets a booking reference (e.g. `KW-1A2B3C4D`).
 
-Until then, submitting the form opens the visitor's email app with the request filled in.
+```
+api/csrf-token.php   GET  -> { success, token }   (the form fetches this on load)
+api/booking.php      POST -> 201 { success, message, reference }
+                             422 { success:false, message, errors:{field:"..."} }
+                             403 bad CSRF/origin · 405 wrong method · 429 rate limited · 500 error
+config/config.php    reads settings from .env
+config/db.php        PDO connection to MySQL
+includes/            bootstrap (error handling, CORS, headers) + helpers (CSRF, input cleaning)
+database/schema.sql  the bookings table
+.env.example         copy to .env and fill in (.env is git-ignored)
+```
+
+`api/booking.php` checks every field again on the server: course, a start date within the
+next year, morning/afternoon, name, phone, email, gender and ID number. It also checks the
+CSRF token and the request origin, catches spam bots with a hidden honeypot field, and
+limits each IP address to `RATE_LIMIT_PER_HOUR` requests. It saves the booking with
+prepared statements and emails the school with PHP `mail()` if `MAIL_TO` is set.
+
+### Setting it up on the host
+Needs **PHP 8.1+** (with the `pdo_mysql` and `mbstring` extensions) and **MySQL 5.7+ / MariaDB 10.3+**,
+on Apache. Most cPanel hosting has all of this.
+
+1. Create a MySQL database and user in the hosting panel.
+2. Import `database/schema.sql` (phpMyAdmin > Import).
+3. Copy `.env.example` to `.env` and fill in the database details and `MAIL_FROM`
+   (use an address on your own domain so the emails aren't marked as spam).
+4. Upload the whole folder, including `.env` and the `.htaccess` files.
+5. Check the protections: opening `https://your-domain/config/config.php` and
+   `https://your-domain/.env` should both give "Not Found" or "Forbidden".
+6. Send a test booking and confirm it appears in the `bookings` table and arrives by email.
+
+The `.htaccess` files block web access to `config/`, `includes/`, `database/` and `.env`.
+On Nginx, add equivalent `deny all` rules for those paths.
+
+Bookings hold ID numbers, which are personal data: keep database access limited to staff.
 
 ## Hosting
-Any static host works: Netlify (drag-and-drop the folder), GitHub Pages, or Cloudflare Pages.
+The site needs PHP hosting for the booking form (see above). Static-only hosts like
+GitHub Pages, Netlify or Cloudflare Pages will show the pages, but the form won't work there.
