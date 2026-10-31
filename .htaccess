@@ -3,6 +3,17 @@
 Options -Indexes
 ErrorDocument 404 /404.html
 
+# One address for everyone: https://kwamedrivingschool.co.ke (no www, always HTTPS).
+# Only on the real domain, and not for /.well-known/ (used by cPanel AutoSSL to issue the certificate).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteCond %{HTTP_HOST} ^(www\.)?kwamedrivingschool\.co\.ke$ [NC]
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://kwamedrivingschool.co.ke%{REQUEST_URI} [L,R=301]
+</IfModule>
+
 # Never serve dotfiles (.env, .git, .htaccess), SQL dumps, backups or the local test script.
 <FilesMatch "^\.|\.(sql|bak|log|ini)$|^test_db\.php$">
   Require all denied

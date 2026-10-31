@@ -87,8 +87,8 @@ on Apache. Most cPanel hosting has all of this.
 3. Copy `.env.example` to `.env` and fill in the database details and `MAIL_FROM`
    (use an address on your own domain so the emails aren't marked as spam).
 4. Upload the whole folder, including `.env` and the `.htaccess` files.
-5. Check the protections: opening `https://your-domain/config/config.php` and
-   `https://your-domain/.env` should both give "Not Found" or "Forbidden".
+5. Check the protections: opening `https://kwamedrivingschool.co.ke/config/config.php` and
+   `https://kwamedrivingschool.co.ke/.env` should both give "Not Found" or "Forbidden".
 6. Send a test booking and confirm it appears in the `bookings` table and arrives by email.
 
 The `.htaccess` files block web access to `config/`, `includes/`, `.env`, `schema.sql` and `test_db.php`.
@@ -129,6 +129,16 @@ Note: `php -S` ignores `.htaccess`, so locally `.env` and `config/` can be opene
 browser. That's fine on your own computer; on the real server the `.htaccess` rules apply.
 
 Bookings hold ID numbers, which are personal data: keep database access limited to staff.
+
+## Domain
+The site lives at **https://kwamedrivingschool.co.ke**. The domain is written into the
+`og:url`, `og:image` and canonical tags in each page's `<head>`, into `sitemap.xml` and
+`robots.txt`, and into the redirect in `.htaccess`. Change all of these if the domain ever changes.
+
+`.htaccess` sends `http://` and `www.` visitors to `https://kwamedrivingschool.co.ke`.
+**Get the SSL certificate working first** (cPanel > SSL/TLS Status > Run AutoSSL), or the
+redirect will send visitors to an HTTPS address that shows a security warning. If the site
+is ever put behind Cloudflare, set its SSL mode to "Full" to avoid a redirect loop.
 
 ## Hosting
 The site needs PHP hosting for the booking form (see above). Static-only hosts like

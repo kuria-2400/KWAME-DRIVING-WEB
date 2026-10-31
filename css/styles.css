@@ -947,18 +947,24 @@ p  { margin: 0 0 1em; }
 .footer-photos img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform 0.4s var(--ease); }
 .footer-photos img:hover { transform: scale(1.04); position: relative; z-index: 1; }
 @media (max-width: 700px) { .footer-photos { grid-template-columns: repeat(3, 1fr); } }
-.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 36px; margin-bottom: 40px; }
-@media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; } }
-@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 0.8fr; gap: 36px 56px; margin-bottom: 40px; }
+@media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-grid > :first-child { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 .site-footer h4 { color: #fff; font-size: 1rem; margin-bottom: 14px; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #1a1a1a; color: #fff; transition: background 0.2s, color 0.2s, transform 0.2s var(--ease); }
+.footer-social a:hover, .footer-social a:focus-visible { background: var(--blue); color: var(--black); transform: translateY(-2px); }
+.footer-social svg { width: 18px; height: 18px; }
+/* On phones, keep the footer's last line clear of the sticky "Book or Enroll" button. */
+@media (max-width: 700px) { .site-footer { padding-bottom: 96px; } }
 .site-footer li { margin-bottom: 8px; }
 .site-footer a { text-decoration: none; color: #cfd3d7; transition: color 0.2s; }
 .site-footer a:hover { color: var(--blue); }
 .site-footer .contact-item { display: flex; align-items: center; gap: 10px; overflow-wrap: anywhere; }
 .site-footer .fi { flex: none; width: 18px; height: 18px; color: var(--blue); }
 .site-footer .logo { color: #fff; margin-bottom: 14px; line-height: 1.2; }
-.footer-bottom { border-top: 1px solid #222222; padding-top: 22px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; }
+.footer-bottom { border-top: 1px solid #222222; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; }
 
 /* ---------- Floating UI ---------- */
 .to-top {

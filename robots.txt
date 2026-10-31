@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://kwamedrivingschool.co.ke/sitemap.xml
