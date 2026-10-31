@@ -261,64 +261,6 @@
     restart();
   });
 
-  /* ---------- Gallery lightbox ---------- */
-  const galleryItems = $$("[data-gallery] button");
-  if (galleryItems.length) {
-    const lb = document.createElement("div");
-    lb.className = "lightbox";
-    lb.setAttribute("role", "dialog");
-    lb.setAttribute("aria-modal", "true");
-    lb.setAttribute("aria-label", "Photo viewer");
-    lb.innerHTML = `
-      <button class="lb-btn lb-close" aria-label="Close">✕</button>
-      <button class="lb-btn lb-prev" aria-label="Previous photo">←</button>
-      <figure><img alt="" /><figcaption></figcaption></figure>
-      <button class="lb-btn lb-next" aria-label="Next photo">→</button>`;
-    document.body.appendChild(lb);
-    const img = $("img", lb);
-    const cap = $("figcaption", lb);
-    let at = 0;
-    let opener = null;
-
-    function show(n) {
-      at = (n + galleryItems.length) % galleryItems.length;
-      const src = $("img", galleryItems[at]);
-      img.src = src.currentSrc || src.src;
-      img.alt = src.alt;
-      cap.textContent = src.alt;
-    }
-    function open(n) {
-      opener = document.activeElement;
-      show(n);
-      lb.classList.add("open");
-      document.body.classList.add("no-scroll");
-      $(".lb-close", lb).focus();
-    }
-    function close() {
-      lb.classList.remove("open");
-      document.body.classList.remove("no-scroll");
-      opener && opener.focus();
-    }
-    galleryItems.forEach((b, n) => b.addEventListener("click", () => open(n)));
-    $(".lb-close", lb).addEventListener("click", close);
-    $(".lb-prev", lb).addEventListener("click", () => show(at - 1));
-    $(".lb-next", lb).addEventListener("click", () => show(at + 1));
-    lb.addEventListener("click", (e) => e.target === lb && close());
-    document.addEventListener("keydown", (e) => {
-      if (!lb.classList.contains("open")) return;
-      if (e.key === "Escape") close();
-      if (e.key === "ArrowLeft") show(at - 1);
-      if (e.key === "ArrowRight") show(at + 1);
-      if (e.key === "Tab") {
-        // keep focus inside the viewer
-        const f = $$("button", lb);
-        const first = f[0], last = f[f.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
-    });
-  }
-
   /* ---------- Flip cards: tap to flip on touch ---------- */
   $$(".flip").forEach((card) => {
     card.addEventListener("click", () => {
@@ -344,54 +286,6 @@
       });
       el.addEventListener("mouseleave", () => (el.style.transform = ""));
     });
-  }
-
-  /* ---------- Lesson estimator (pricing page) ---------- */
-  const est = $("#estimator");
-  if (est) {
-    const out = {
-      hours: $("[data-out=hours]", est),
-      plan: $("[data-out=plan]", est),
-      note: $("[data-out=note]", est),
-      link: $("[data-out=link]", est),
-      img: $(".result > img", est),
-    };
-    const range = $("#confidence", est);
-    const rangeOut = $("output[for=confidence]", est);
-    const labels = ["Very nervous", "Nervous", "Okay", "Confident", "Very confident"];
-
-    // Rough guide only; Kwame should tune these numbers to his real experience.
-    const BASE = { never: 9, some: 5, licensed: 2 };
-    const PLANS = [
-      { max: 3, name: "Single Lessons", slug: "single", img: "images/start-engine.jpg", note: "A few targeted sessions should get you there." },
-      { max: 6, name: "Starter Pack", slug: "starter", img: "images/hero-driver.jpg", note: "5 hours plus a top-up lesson or two if needed." },
-      { max: 99, name: "10-Lesson Package", slug: "ten", img: "images/hands-on-wheel.jpg", note: "Our best value for building skills from zero." },
-    ];
-
-    function calc() {
-      const exp = $("input[name=experience]:checked", est).value;
-      const goal = $("input[name=goal]:checked", est).value;
-      const conf = +range.value;
-      rangeOut.textContent = labels[conf - 1];
-      let h = BASE[exp] + (3 - conf);
-      if (goal === "test") h += 1;
-      h = Math.max(1, Math.round(h));
-      let plan = PLANS.find((p) => h <= p.max);
-      if (goal === "test" && h <= 6) plan = { name: "Road Test Bundle", slug: "road-test", img: "images/traffic-light.jpg", note: "Test-focused practice, a mock test, and our car on the day." };
-      out.hours.textContent = `${h}–${h + 2} hrs`;
-      out.plan.textContent = plan.name;
-      out.note.textContent = h + 2 > 10 && plan.slug === "ten"
-        ? "Start with the 10-lesson package and add single lessons if you need them."
-        : plan.note;
-      out.link.href = `contact.html?package=${plan.slug}`;
-      if (!out.img.src.endsWith(plan.img)) {
-        out.img.style.opacity = 0;
-        setTimeout(() => { out.img.src = plan.img; out.img.style.opacity = 1; }, 200);
-      }
-      $$("[data-plan]").forEach((c) => c.classList.toggle("highlight", c.dataset.plan === plan.slug));
-    }
-    est.addEventListener("input", calc);
-    calc();
   }
 
   /* ---------- Booking wizard (contact page) ---------- */
@@ -456,12 +350,13 @@
       }
       return true;
     }
-    next.addEventListener("click", () => {
+    function advance() {
       if (!valid()) return;
       step++;
       render();
       form.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-    });
+    }
+    next.addEventListener("click", advance);
     back.addEventListener("click", () => { step--; render(); });
     render();
 
@@ -470,6 +365,8 @@
     // visitor's email app with the details filled in instead.
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      // Enter in an earlier step submits the form natively; treat it as "Next"
+      if (step < panels.length - 1) return advance();
       status.className = "form-status";
       if (!valid()) return;
 

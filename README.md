@@ -5,11 +5,12 @@ Plain HTML/CSS/JS. No build step. Open `index.html` in a browser to view it.
 ## Pages
 | File | What's on it |
 |---|---|
-| `index.html` | Full-screen photo slideshow, "two schools" expanding panels, driving + computer photo tiles, "why us" cards, 4-step journey, animated stats, gallery with lightbox, review carousel |
+| `index.html` | Full-screen photo slideshow, "two schools" expanding panels, driving + computer photo tiles, "why us" cards, 4-step journey, animated stats, photo gallery, review carousel |
 | `lessons.html` | Driving: tabbed lesson explorer (photo collage per lesson), flip cards for key skills |
 | `computers.html` | Computer college: tabbed course explorer (Basics, Office, Internet, Design, Coding, Accounting), how classes work, computer packages, flip cards |
-| `pricing.html` | Driving/Computer switch for package cards (`pricing.html#computer` opens computer), driving lesson estimator, add-on rates, FAQ |
-| `contact.html` | 3-step booking wizard with photo choice cards, contact details, service-area map slot |
+| `pricing.html` | Driving/Computer switch for package cards (`pricing.html#computer` opens computer), FAQ |
+| `contact.html` | 3-step booking wizard with photo choice cards, contact details, service-area map |
+| `404.html` | Shown by the host for broken links |
 
 Shared styles: `css/styles.css` · Shared behavior: `js/main.js` · Photos: `images/`
 
@@ -18,11 +19,9 @@ Shared styles: `css/styles.css` · Shared behavior: `js/main.js` · Photos: `ima
 - Header turns solid on scroll; full-screen animated mobile menu
 - Hero slideshow (auto-advances every 6s, pauses when the tab is hidden)
 - Scroll-reveal animations and counting-up stats
-- Gallery lightbox (click, arrow keys, Esc)
 - Swipeable review carousel
 - Lesson explorer tabs (deep-linkable: `lessons.html#road-test`)
 - Flip cards (hover on desktop, tap on phones)
-- Pricing estimator that recommends a package and highlights its card
 - Booking wizard that validates each step; `?package=starter` pre-selects a lesson.
   Computer choices start with `comp-` (e.g. `?package=comp-office`). For those, the
   driving-only questions (permit, pickup) are hidden. `&plan=Office%20Pro%20Package`
@@ -30,27 +29,27 @@ Shared styles: `css/styles.css` · Shared behavior: `js/main.js` · Photos: `ima
 
 ## Shared header & footer
 The header and footer are repeated in every page. If you change one (e.g. add a
-nav link), make the same change in all six `.html` files.
+nav link), make the same change in all six `.html` files (including `404.html`).
 
 Everything respects the visitor's "reduce motion" setting.
 
 ## Photos
-The photos in `images/` are free stock photos from StockSnap (CC0, no attribution
-required). They're stand-ins. Real photos of Kwame, the training car and (with
-permission) happy students will convert much better. Especially replace:
-- Review carousel images on `index.html`
+Most photos in `images/` are Kwame's own. The rest are free stock photos from
+StockSnap (CC0, no attribution required); the review carousel images on `index.html`
+are still stock.
 
 To swap a photo, drop a new file into `images/` with the same name, or change the `src`.
-Keep photos landscape, about 1600px wide, and under 300 KB.
+Resize phone photos before adding them: about 1920px on the long edge and under
+500 KB. Full-size phone photos (10–17 MB each) make the site very slow on mobile data.
 
 ## Replace the placeholders
 Everything marked with `class="ph"` is placeholder content. To see it highlighted
 while editing, add `class="show-placeholders"` to the `<body>` tag (remove it before going live).
 
 Find & replace across all pages:
-- `Your City`, `Neighborhood A/B`, `Town C`: real service area
 - `Mon–Sat 8am–5pm`: real hours
-- Prices on `pricing.html` (and the estimator's numbers in `js/main.js`, search `BASE`)
+- `24 hours'` cancellation notice on `pricing.html`
+- Prices on `pricing.html`
 - Computer package names, contents and prices: on **both** `computers.html` and `pricing.html`
 - Course durations, software names (Photoshop, CorelDRAW, QuickBooks…), class size, and certificate details on `computers.html`
 - Stats (pass rate, students, years): the `data-count` values on `index.html`
