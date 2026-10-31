@@ -3,10 +3,10 @@
 Options -Indexes
 ErrorDocument 404 /404.html
 
-# Never serve dotfiles (.env, .git, .htaccess) or backups.
-<FilesMatch "^\.|\.(sql|bak|log|ini)$">
+# Never serve dotfiles (.env, .git, .htaccess), SQL dumps, backups or the local test script.
+<FilesMatch "^\.|\.(sql|bak|log|ini)$|^test_db\.php$">
   Require all denied
 </FilesMatch>
 
-# Code and data folders are not public; only /api is.
-RedirectMatch 404 ^/(config|includes|database)(/|$)
+# Code folders are not public; only /api is.
+RedirectMatch 404 ^/(config|includes)(/|$)

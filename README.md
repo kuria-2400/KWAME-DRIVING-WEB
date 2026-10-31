@@ -66,7 +66,8 @@ api/booking.php      POST -> 201 { success, message, reference }
 config/config.php    reads settings from .env
 config/db.php        PDO connection to MySQL
 includes/            bootstrap (error handling, CORS, headers) + helpers (CSRF, input cleaning)
-database/schema.sql  the bookings table
+schema.sql           creates the database and the bookings table
+test_db.php          temporary local check of PHP + MySQL setup (delete before going live)
 .env.example         copy to .env and fill in (.env is git-ignored)
 ```
 
@@ -81,7 +82,8 @@ Needs **PHP 8.1+** (with the `pdo_mysql` and `mbstring` extensions) and **MySQL 
 on Apache. Most cPanel hosting has all of this.
 
 1. Create a MySQL database and user in the hosting panel.
-2. Import `database/schema.sql` (phpMyAdmin > Import).
+2. Delete the `CREATE DATABASE` and `USE` lines at the top of `schema.sql`, then import it
+   (phpMyAdmin > select your database > Import).
 3. Copy `.env.example` to `.env` and fill in the database details and `MAIL_FROM`
    (use an address on your own domain so the emails aren't marked as spam).
 4. Upload the whole folder, including `.env` and the `.htaccess` files.
@@ -89,8 +91,42 @@ on Apache. Most cPanel hosting has all of this.
    `https://your-domain/.env` should both give "Not Found" or "Forbidden".
 6. Send a test booking and confirm it appears in the `bookings` table and arrives by email.
 
-The `.htaccess` files block web access to `config/`, `includes/`, `database/` and `.env`.
-On Nginx, add equivalent `deny all` rules for those paths.
+The `.htaccess` files block web access to `config/`, `includes/`, `.env`, `schema.sql` and `test_db.php`.
+On Nginx, add equivalent `deny all` rules for those paths. Don't upload `test_db.php` at all.
+
+### Testing on your own computer (Windows)
+You need PHP 8.1+ and MySQL. The simplest way is XAMPP (https://www.apachefriends.org),
+which installs both. Its PHP is `C:\xampp\php\php.exe` and MySQL is `C:\xampp\mysql\bin\mysql.exe`
+(add `C:\xampp\php` and `C:\xampp\mysql\bin` to PATH, or type the full paths).
+Start **MySQL** from the XAMPP Control Panel, then in the project folder:
+
+```powershell
+# 1. Settings: copy the example, then edit .env (XAMPP: DB_USER=root, DB_PASS empty)
+Copy-Item .env.example .env
+#    For local testing also set:  MAIL_TO=   (empty: Windows can't send mail)
+#                                 RATE_LIMIT_PER_HOUR=100
+
+# 2. Create the database and table
+mysql -u root -p -e "source schema.sql"
+
+# 3. Check PHP + database (expect "All good")
+php test_db.php
+
+# 4. Start the PHP server
+php -S 127.0.0.1:8000
+```
+
+Then open **http://127.0.0.1:8000/contact.html**. Not VS Code Live Server
+(port 5501) and not by double-clicking the file: neither runs PHP, so the form will show its
+error message. Use `127.0.0.1` rather than `localhost`: on Windows, `localhost` can point
+at IPv6 and fail to connect.
+
+If `php test_db.php` says `pdo_mysql` or `mbstring` is missing (plain PHP downloads, not
+XAMPP): copy `php.ini-development` to `php.ini` next to `php.exe`, and remove the `;` in
+front of `extension_dir = "ext"`, `extension=pdo_mysql` and `extension=mbstring`.
+
+Note: `php -S` ignores `.htaccess`, so locally `.env` and `config/` can be opened in the
+browser. That's fine on your own computer; on the real server the `.htaccess` rules apply.
 
 Bookings hold ID numbers, which are personal data: keep database access limited to staff.
 
