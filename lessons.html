@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Driving Lessons | Kwame Driving School &amp; Computer College</title>
-  <meta name="description" content="Beginner driving lessons, road test prep, refresher and highway lessons, and teen driver training in Your City." />
+  <meta name="description" content="Driving theory, highway test preparation, basic car mechanics, and driving assessments in Your City." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
 </head>
 <body>
 
-  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car">🚗</span></div>
+  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span></div>
 
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="logo">
-        <span class="logo-mark">K</span>
+        <img class="logo-mark" src="images/logo.png" alt="" width="44" height="44" />
         <span>Kwame Driving<small>&amp; Computer College</small></span>
       </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -26,20 +27,51 @@
         <li><a href="lessons.html">Driving</a></li>
         <li><a href="computers.html">Computer</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="contact.html" class="btn btn--primary">Book Now</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html" class="btn btn--primary">Enroll Now</a></li>
       </ul>
     </div>
   </header>
 
   <main>
     <section class="page-hero">
-      <img src="images/hands-on-wheel.jpg" alt="" data-parallax="0.25" />
+      <img src="images/home%20page.jpeg" alt="" data-parallax="0.25" />
       <div class="container">
         <div class="crumbs"><a href="index.html">Home</a> / Driving</div>
         <h1 class="reveal">Driving Lessons</h1>
         <p class="reveal" style="--d:.1s">From your first turn of the key to test day and beyond.</p>
+      </div>
+    </section>
+
+    <!-- Branches -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Where we train</span>
+          <h2>Our branches</h2>
+        </div>
+        <div class="branch-grid">
+          <article class="branch-card reveal">
+            <span class="branch-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="branch-tag">Main branch</span>
+            <h3>Maai Mahiu Branch</h3>
+            <p>Our head office. Enroll, book lessons and get all your questions answered here.</p><p class="branch-addr">Maai Mahiu town, opposite Total petrol station, along the Maai Mahiu–Narok highway.</p>
+          </article>
+
+          <article class="branch-card reveal" style="--d:.1s">
+            <span class="branch-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="branch-tag">Open</span>
+            <h3>Suswa Branch</h3>
+            <p>Driving lessons closer to home for students in and around Suswa.</p><p class="branch-addr">Suswa town, opposite K-Unity Bank, along the Maai Mahiu–Narok road.</p>
+          </article>
+
+          <article class="branch-card reveal soon" style="--d:.2s">
+            <span class="branch-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="branch-tag">Coming soon</span>
+            <h3>Ntulele Branch</h3>
+            <p>A new branch opening soon. Call us to be the first to know when it opens.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -48,81 +80,77 @@
       <div class="container" data-tabs>
         <div class="section-head reveal">
           <span class="eyebrow">Explore</span>
-          <h2>Pick your lesson</h2>
+          <h2>Lessons</h2>
         </div>
 
         <div class="explorer-tabs reveal" role="tablist" aria-label="Lesson types">
-          <button role="tab" type="button" id="tab-beginner" aria-controls="beginner"><img src="images/start-engine.jpg" alt="" />Beginner</button>
-          <button role="tab" type="button" id="tab-road-test" aria-controls="road-test"><img src="images/traffic-light.jpg" alt="" />Road Test</button>
-          <button role="tab" type="button" id="tab-refresher" aria-controls="refresher"><img src="images/highway-trucks.jpg" alt="" />Highway &amp; Refresher</button>
-          <button role="tab" type="button" id="tab-teen" aria-controls="teen"><img src="images/teen-drivers.jpg" alt="" />Teen Drivers</button>
+          <button role="tab" type="button" id="tab-theory" aria-controls="theory"><img src="images/traffic-light.jpg" alt="" />Theory</button>
+          <button role="tab" type="button" id="tab-highway-test" aria-controls="highway-test"><img src="images/highway-trucks.jpg" alt="" />Highway test</button>
+          <button role="tab" type="button" id="tab-mechanics" aria-controls="mechanics"><img src="images/start-engine.jpg" alt="" />Mechanics</button>
+          <button role="tab" type="button" id="tab-assessment" aria-controls="assessment"><img src="images/mirror-check.jpg" alt="" />Assessment</button>
         </div>
 
-        <div class="explorer-panel" role="tabpanel" id="beginner" data-slug="beginner" aria-labelledby="tab-beginner">
+        <div class="explorer-panel" role="tabpanel" id="theory" data-slug="theory" aria-labelledby="tab-theory">
           <div class="explorer-media">
-            <img src="images/start-engine.jpg" alt="Turning the key in the ignition" />
-            <img src="images/dual-control.jpg" alt="Dual-control training car interior" loading="lazy" />
-            <img src="images/parking-lot.jpg" alt="Practicing in a quiet parking lot" loading="lazy" />
-            <span class="chip">🔰 Never driven before</span>
+            <img src="images/board.jpg" alt="Model road board with toy cars, roundabout and parking bays used in theory lessons" />
+            <img src="images/city-street.jpg" alt="Busy city street" loading="lazy" />
+            <img src="images/road-ahead.jpg" alt="Road markings ahead" loading="lazy" />
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Learn the rules first</span>
           </div>
           <div class="explorer-text">
-            <h2>Beginner</h2>
-            <div class="meta"><span>⏱ 60-min lessons</span><span>👤 Permit holders</span></div>
+            <h2>Theory</h2>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 2hrs</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> New learners</span></div>
             <ul class="skill-chips">
-              <li>Car controls</li><li>Steering &amp; braking</li><li>Turns</li><li>Intersections</li><li>Lane changes</li><li>Hazard scanning</li>
+              <li>Highway Code</li><li>Road signs</li><li>Traffic rules</li><li>Right of way</li><li>Road hazard awareness</li><li>Causes of accidents</li><li>Theory test practice</li><li>Model town board</li><li>General road knowledge</li>
             </ul>
-            <a href="contact.html?package=beginner" class="btn btn--primary">Book Beginner <span class="arrow">→</span></a>
           </div>
         </div>
 
-        <div class="explorer-panel" role="tabpanel" id="road-test" data-slug="road-test" aria-labelledby="tab-road-test" hidden>
-          <div class="explorer-media">
-            <img src="images/traffic-light.jpg" alt="Traffic light and turn sign" loading="lazy" />
-            <img src="images/parking-lot.jpg" alt="Parking practice" loading="lazy" />
-            <img src="images/mirror-check.jpg" alt="Checking the side mirror" loading="lazy" />
-            <span class="chip">✅ Test-day ready</span>
-          </div>
-          <div class="explorer-text">
-            <h2>Road Test Prep</h2>
-            <div class="meta"><span>⏱ 60-min lessons</span><span>🚗 Our car on test day</span></div>
-            <ul class="skill-chips">
-              <li>Parallel parking</li><li>3-point turns</li><li>Backing up</li><li>Mock road test</li><li>Local test routes</li><li>Warm-up lesson</li>
-            </ul>
-            <a href="contact.html?package=road-test" class="btn btn--primary">Book Road Test Prep <span class="arrow">→</span></a>
-          </div>
-        </div>
-
-        <div class="explorer-panel" role="tabpanel" id="refresher" data-slug="refresher" aria-labelledby="tab-refresher" hidden>
+        <div class="explorer-panel" role="tabpanel" id="highway-test" data-slug="highway-test" aria-labelledby="tab-highway-test" hidden>
           <div class="explorer-media">
             <img src="images/highway-trucks.jpg" alt="Highway driving next to trucks" loading="lazy" />
             <img src="images/night-highway.jpg" alt="Highway at night" loading="lazy" />
-            <img src="images/road-ahead.jpg" alt="Open road" loading="lazy" />
-            <span class="chip">🛣️ Licensed drivers</span>
+            <img src="images/open-road.jpg" alt="Open road" loading="lazy" />
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg> Highway ready</span>
           </div>
           <div class="explorer-text">
-            <h2>Highway &amp; Refresher</h2>
-            <div class="meta"><span>⏱ 60–90 min</span><span>👤 Rusty or anxious drivers</span></div>
+            <h2>Highway test</h2>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 2hrs</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Learners on the road</span></div>
             <ul class="skill-chips">
-              <li>Merging</li><li>Exits</li><li>Lane discipline</li><li>Night driving</li><li>Bad weather</li><li>Tight parking</li>
+              <li>Road merging</li><li>Exits</li><li>Lane discipline</li><li>Overtaking safely</li><li>Speed control</li><li>Road positioning</li><li>Clutch control</li><li>Gear shifting</li><li>Steering wheel control</li><li>Lane shifting</li><li>Hill start</li>
             </ul>
-            <a href="contact.html?package=refresher" class="btn btn--primary">Book a Refresher <span class="arrow">→</span></a>
           </div>
         </div>
 
-        <div class="explorer-panel" role="tabpanel" id="teen" data-slug="teen" aria-labelledby="tab-teen" hidden>
+        <div class="explorer-panel" role="tabpanel" id="mechanics" data-slug="mechanics" aria-labelledby="tab-mechanics" hidden>
           <div class="explorer-media">
-            <img src="images/teen-drivers.jpg" alt="Young drivers beside a car" loading="lazy" />
-            <img src="images/city-street.jpg" alt="City street" loading="lazy" />
-            <img src="images/car-keys.jpg" alt="Car keys" loading="lazy" />
-            <span class="chip">🎒 Pickup from school</span>
+            <img src="images/IMAGE%205.jpg" alt="Student driver at the wheel of a training van" style="object-position: 65% center" loading="lazy" />
+            <img src="images/dual-control.jpg" alt="Car dashboard and controls" loading="lazy" />
+            <img src="images/CAR%20KEYS.jpg" alt="Car keys held out of a training car window" style="object-position: center 65%" loading="lazy" />
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Know your car</span>
           </div>
           <div class="explorer-text">
-            <h2>Teen Drivers</h2>
-            <div class="meta"><span>⏱ 60-min lessons</span><span>👪 Parent updates</span></div>
+            <h2>Mechanics</h2>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 2hrs</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> All students</span></div>
             <ul class="skill-chips">
-              <li>School pickup</li><li>Lesson summaries</li><li>Practice tips</li><li>Hours logging</li><li>Defensive habits</li>
+              <li>Car controls</li><li>Engine basics</li><li>Oil &amp; water checks</li><li>Tyre checks &amp; changes</li><li>Warning lights</li><li>Daily safety checks</li>
             </ul>
-            <a href="contact.html?package=teen" class="btn btn--primary">Book Teen Lessons <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="explorer-panel" role="tabpanel" id="assessment" data-slug="assessment" aria-labelledby="tab-assessment" hidden>
+          <div class="explorer-media">
+            <img src="images/assessment%201.jpg" alt="Chart of informatory road signs on the classroom wall" loading="lazy" />
+            <img src="images/assessment%202.jpg" alt="Chart of warning, mandatory and prohibitory road signs" loading="lazy" />
+            <img src="images/assessment%203.jpg" alt="Painted wall of mandatory, priority and warning signs and traffic lights" loading="lazy" />
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Test-day ready</span>
+          </div>
+          <div class="explorer-text">
+            <h2>Assessment</h2>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 2hrs</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Our car on test day</span></div>
+            <ul class="skill-chips">
+              <li>Mock driving test</li><li>Parking</li><li>3-point turns</li><li>Mirror checks</li><li>Feedback report</li><li>Test-day warm-up</li><li>Reversing</li><li>Use of hand brake</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -139,25 +167,25 @@
           <button class="flip reveal" type="button" aria-pressed="false">
             <span class="flip-inner">
               <span class="flip-face flip-front"><img src="images/mirror-check.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Mirrors &amp; blind spots</span></span>
-              <span class="flip-face flip-back"><span class="icon">🪞</span><span class="t">Mirrors &amp; blind spots</span><span>Check, signal, shoulder-check, go. Every single time.</span></span>
+              <span class="flip-face flip-back"><span class="icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="t">Mirrors &amp; blind spots</span><span>Check, signal, shoulder-check, go. Every single time.</span></span>
             </span>
           </button>
           <button class="flip reveal" style="--d:.1s" type="button" aria-pressed="false">
             <span class="flip-inner">
-              <span class="flip-face flip-front"><img src="images/parking-lot.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Parking</span></span>
-              <span class="flip-face flip-back"><span class="icon">🅿️</span><span class="t">Parking</span><span>Parallel, angled, and reverse parking, practiced until it's easy.</span></span>
+              <span class="flip-face flip-front"><img class="fit-bg" src="images/PARKING.jpeg" alt="" loading="lazy" /><img class="fit" src="images/PARKING.jpeg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Parking</span></span>
+              <span class="flip-face flip-back"><span class="icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span><span class="t">Parking</span><span>Parallel, angled, and reverse parking, practiced until it's easy.</span></span>
             </span>
           </button>
           <button class="flip reveal" style="--d:.2s" type="button" aria-pressed="false">
             <span class="flip-inner">
               <span class="flip-face flip-front"><img src="images/intersection.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Intersections</span></span>
-              <span class="flip-face flip-back"><span class="icon">🚦</span><span class="t">Intersections</span><span>Right-of-way, protected turns, and four-way stops.</span></span>
+              <span class="flip-face flip-back"><span class="icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="2" width="10" height="20" rx="3"/><circle cx="12" cy="7" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="17" r="1.5"/></svg></span><span class="t">Intersections</span><span>Right-of-way, protected turns, and four-way stops.</span></span>
             </span>
           </button>
           <button class="flip reveal" style="--d:.3s" type="button" aria-pressed="false">
             <span class="flip-inner">
               <span class="flip-face flip-front"><img src="images/night-highway.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Highway merging</span></span>
-              <span class="flip-face flip-back"><span class="icon">🛣️</span><span class="t">Highway merging</span><span>Match speed, find your gap, and merge smoothly.</span></span>
+              <span class="flip-face flip-back"><span class="icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg></span><span class="t">Highway merging</span><span>Match speed, find your gap, and merge smoothly.</span></span>
             </span>
           </button>
         </div>
@@ -167,13 +195,12 @@
     <section class="section">
       <div class="container">
         <div class="cta-photo reveal zoom">
-          <img src="images/driver-sunset.jpg" alt="" loading="lazy" />
+          <img src="images/footer.jpg" alt="" loading="lazy" />
           <span class="eyebrow">Not sure where to start?</span>
           <h2>We'll find the right lesson for you.</h2>
           <p>Call or text for a quick recommendation.</p>
           <div class="actions">
-            <a href="tel:+15551234567" class="btn btn--primary ph">📞 (555) 123-4567</a>
-            <a href="pricing.html#estimator" class="btn btn--glass">Try the lesson estimator</a>
+            <a href="tel:+254143754721" class="btn btn--primary"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0143 754 721</a>
           </div>
         </div>
       </div>
@@ -182,64 +209,35 @@
 
   <footer class="site-footer">
     <div class="footer-photos" aria-hidden="true">
-      <img src="images/hands-on-wheel.jpg" alt="" loading="lazy" />
-      <img src="images/comp-typing.jpg" alt="" loading="lazy" />
-      <img src="images/traffic-light.jpg" alt="" loading="lazy" />
-      <img src="images/comp-design.jpg" alt="" loading="lazy" />
-      <img src="images/mirror-check.jpg" alt="" loading="lazy" />
-      <img src="images/comp-coding.jpg" alt="" loading="lazy" />
+      <img src="images/footer%201.jpg" alt="" loading="lazy" />
+      <img src="images/footer%202.jpg" alt="" loading="lazy" />
+      <img src="images/footer%203.jpg" alt="" loading="lazy" />
+      <img src="images/footer%204.jpg" alt="" loading="lazy" />
+      <img src="images/footer%205.jpg" alt="" loading="lazy" />
+      <img src="images/footer%206.jpg" alt="" loading="lazy" />
     </div>
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a href="index.html" class="logo"><span class="logo-mark">K</span><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
-          <p>Driving lessons and computer courses in <span class="ph">Your City</span>.</p>
+          <a href="index.html" class="logo"><img class="logo-mark" src="images/logo.png" alt="" width="44" height="44" /><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
+          <p>Driving lessons and computer courses in Maai Mahiu.</p>
         </div>
         <div>
-          <h4>Explore</h4>
+          <h4 id="contact">Get in touch</h4>
           <ul>
-            <li><a href="lessons.html">Driving</a></li>
-            <li><a href="computers.html">Computer</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Driving</h4>
-          <ul>
-            <li><a href="lessons.html#beginner">Beginner</a></li>
-            <li><a href="lessons.html#road-test">Road Test Prep</a></li>
-            <li><a href="lessons.html#refresher">Refresher</a></li>
-            <li><a href="lessons.html#teen">Teen Drivers</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Computer</h4>
-          <ul>
-            <li><a href="computers.html#basics">Computer Basics</a></li>
-            <li><a href="computers.html#office">Microsoft Office</a></li>
-            <li><a href="computers.html#design">Graphic Design</a></li>
-            <li><a href="computers.html#coding">Web &amp; Coding</a></li>
-            <li><a href="computers.html#packages">Packages</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Get in touch</h4>
-          <ul>
-            <li><a class="ph" href="tel:+15551234567">📞 (555) 123-4567</a></li>
-            <li><a class="ph" href="mailto:info@kwamedrivingschool.com">✉️ info@kwamedrivingschool.com</a></li>
-            <li class="ph">🕑 Mon–Sat, 8am–7pm</li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+254143754721">0143 754 721</a></li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><a href="mailto:kwamedrivingschool@gmail.com">kwamedrivingschool@gmail.com</a></li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="ph">Mon–Sat, 8am–5pm</span></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span data-year></span> Kwame Driving School &amp; Computer College</span>
-        <span class="ph">License #: XXXXXXX</span>
       </div>
     </div>
   </footer>
 
+  <a class="wa-float" href="https://wa.me/254143754721?text=Hello%20Kwame%20Driving%20School" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
   <button class="to-top" type="button" aria-label="Back to top">↑</button>
   <a class="btn btn--primary mobile-cta" href="contact.html">Book or Enroll →</a>
 

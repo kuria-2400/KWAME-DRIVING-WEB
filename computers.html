@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Computer Courses | Kwame Driving School &amp; Computer College</title>
-  <meta name="description" content="Hands-on computer courses and packages in Your City: computer basics, Microsoft Office, internet, graphic design, coding, and accounting software." />
+  <meta name="description" content="Hands-on computer courses and packages in Your City: computer basics, Microsoft Office, internet and email, and graphic design." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
 </head>
 <body>
 
-  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car">🚗</span></div>
+  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span></div>
 
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="logo">
-        <span class="logo-mark">K</span>
+        <img class="logo-mark" src="images/logo.png" alt="" width="44" height="44" />
         <span>Kwame Driving<small>&amp; Computer College</small></span>
       </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -26,16 +27,15 @@
         <li><a href="lessons.html">Driving</a></li>
         <li><a href="computers.html">Computer</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="contact.html" class="btn btn--primary">Book Now</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html" class="btn btn--primary">Enroll Now</a></li>
       </ul>
     </div>
   </header>
 
   <main>
     <section class="page-hero">
-      <img src="images/comp-group.jpg" alt="" data-parallax="0.25" />
+      <img src="images/home%20photo%201.jpeg" alt="" data-parallax="0.25" />
       <div class="container">
         <div class="crumbs"><a href="index.html">Home</a> / Computer College</div>
         <h1 class="reveal">Computer College</h1>
@@ -47,8 +47,8 @@
     <section class="section">
       <div class="container" data-tabs>
         <div class="section-head reveal">
-          <span class="eyebrow">Courses</span>
-          <h2>Pick your course</h2>
+          <span class="eyebrow">Explore</span>
+          <h2>Courses</h2>
         </div>
 
         <div class="explorer-tabs reveal" role="tablist" aria-label="Computer courses">
@@ -56,8 +56,6 @@
           <button role="tab" type="button" id="tab-office" aria-controls="office"><img src="images/comp-office.jpg" alt="" />Microsoft Office</button>
           <button role="tab" type="button" id="tab-internet" aria-controls="internet"><img src="images/comp-internet.jpg" alt="" />Internet &amp; Email</button>
           <button role="tab" type="button" id="tab-design" aria-controls="design"><img src="images/comp-design.jpg" alt="" />Graphic Design</button>
-          <button role="tab" type="button" id="tab-coding" aria-controls="coding"><img src="images/comp-coding.jpg" alt="" />Web &amp; Coding</button>
-          <button role="tab" type="button" id="tab-accounting" aria-controls="accounting"><img src="images/comp-accounting.jpg" alt="" />Accounting Software</button>
         </div>
 
         <!-- Durations and course contents are placeholders: adjust to the real syllabus -->
@@ -66,15 +64,14 @@
             <img src="images/comp-basics.jpg" alt="Student typing on a laptop" />
             <img src="images/comp-typing.jpg" alt="Hands on a keyboard" loading="lazy" />
             <img src="images/comp-desktop.jpg" alt="Student at a desktop computer" loading="lazy" />
-            <span class="chip">🖱️ No experience needed</span>
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg> No experience needed</span>
           </div>
           <div class="explorer-text">
             <h2>Computer Basics</h2>
-            <div class="meta"><span class="ph">⏱ 4 weeks</span><span>👤 Complete beginners</span></div>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 1 week</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Complete beginners</span></div>
             <ul class="skill-chips">
               <li>Mouse &amp; keyboard</li><li>Typing</li><li>Files &amp; folders</li><li>Windows</li><li>Printing</li><li>USB &amp; storage</li>
             </ul>
-            <a href="contact.html?package=comp-basics" class="btn btn--primary">Enroll in Basics <span class="arrow">→</span></a>
           </div>
         </div>
 
@@ -83,15 +80,14 @@
             <img src="images/comp-office.jpg" alt="Charts in a spreadsheet on a laptop" loading="lazy" />
             <img src="images/comp-charts.jpg" alt="Presentation charts on a laptop" loading="lazy" />
             <img src="images/comp-study.jpg" alt="Student working on a laptop" loading="lazy" />
-            <span class="chip">📊 Most popular</span>
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg> Most popular</span>
           </div>
           <div class="explorer-text">
             <h2>Microsoft Office</h2>
-            <div class="meta"><span class="ph">⏱ 6 weeks</span><span>👤 Work &amp; school</span></div>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 1 week</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Work &amp; school</span></div>
             <ul class="skill-chips">
-              <li>Word</li><li>Excel</li><li>PowerPoint</li><li>Formulas</li><li>Charts</li><li>Reports &amp; CVs</li>
+              <li>Word</li><li>Excel</li><li>Formulas</li><li>Charts</li><li>Reports &amp; CVs</li>
             </ul>
-            <a href="contact.html?package=comp-office" class="btn btn--primary">Enroll in Office <span class="arrow">→</span></a>
           </div>
         </div>
 
@@ -100,15 +96,14 @@
             <img src="images/comp-internet.jpg" alt="Laptop and phone on a desk" loading="lazy" />
             <img src="images/comp-student.jpg" alt="Woman browsing on a laptop" loading="lazy" />
             <img src="images/comp-workspace.jpg" alt="Desktop computer workspace" loading="lazy" />
-            <span class="chip">🌐 Get online safely</span>
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Get online safely</span>
           </div>
           <div class="explorer-text">
             <h2>Internet &amp; Email</h2>
-            <div class="meta"><span class="ph">⏱ 2 weeks</span><span>👤 All ages</span></div>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 1 week</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> All ages</span></div>
             <ul class="skill-chips">
               <li>Browsing</li><li>Email</li><li>Online forms</li><li>Video calls</li><li>Online safety</li><li>Cloud storage</li>
             </ul>
-            <a href="contact.html?package=comp-internet" class="btn btn--primary">Enroll in Internet <span class="arrow">→</span></a>
           </div>
         </div>
 
@@ -117,136 +112,15 @@
             <img src="images/comp-design.jpg" alt="Designer using a pen tablet" loading="lazy" />
             <img src="images/comp-colors.jpg" alt="Color swatches" loading="lazy" />
             <img src="images/comp-charts.jpg" alt="Design work on a laptop" loading="lazy" />
-            <span class="chip">🎨 Creative skills</span>
+            <span class="chip"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="13.5" cy="6.5" r="1" fill="currentColor"/><circle cx="17.5" cy="10.5" r="1" fill="currentColor"/><circle cx="8.5" cy="7.5" r="1" fill="currentColor"/><circle cx="6.5" cy="12.5" r="1" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.56-2.5 5.56-5.55C21.97 6.01 17.46 2 12 2z"/></svg> Creative skills</span>
           </div>
           <div class="explorer-text">
             <h2>Graphic Design</h2>
-            <div class="meta"><span class="ph">⏱ 8 weeks</span><span>👤 Basics required</span></div>
+            <div class="meta"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2h4"/><path d="m12 14 3-3"/><circle cx="12" cy="14" r="8"/></svg> 1 week</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Basics required</span></div>
             <ul class="skill-chips">
-              <li class="ph">Photoshop</li><li class="ph">CorelDRAW</li><li class="ph">Canva</li><li>Flyers &amp; posters</li><li>Logos</li><li>Social media graphics</li>
+              <li>PowerPoint</li>
             </ul>
-            <a href="contact.html?package=comp-design" class="btn btn--primary">Enroll in Design <span class="arrow">→</span></a>
           </div>
-        </div>
-
-        <div class="explorer-panel" role="tabpanel" id="coding" data-slug="coding" aria-labelledby="tab-coding" hidden>
-          <div class="explorer-media">
-            <img src="images/comp-coding.jpg" alt="Writing code on a laptop" loading="lazy" />
-            <img src="images/comp-code.jpg" alt="Code on a screen" loading="lazy" />
-            <img src="images/comp-desktop.jpg" alt="Student at a desktop computer" loading="lazy" />
-            <span class="chip">💻 Build your first website</span>
-          </div>
-          <div class="explorer-text">
-            <h2>Web &amp; Coding</h2>
-            <div class="meta"><span class="ph">⏱ 10 weeks</span><span>👤 Basics required</span></div>
-            <ul class="skill-chips">
-              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Website project</li><li>Publishing online</li>
-            </ul>
-            <a href="contact.html?package=comp-coding" class="btn btn--primary">Enroll in Coding <span class="arrow">→</span></a>
-          </div>
-        </div>
-
-        <div class="explorer-panel" role="tabpanel" id="accounting" data-slug="accounting" aria-labelledby="tab-accounting" hidden>
-          <div class="explorer-media">
-            <img src="images/comp-accounting.jpg" alt="Calculator and accounting software" loading="lazy" />
-            <img src="images/comp-office.jpg" alt="Financial charts on a laptop" loading="lazy" />
-            <img src="images/comp-typing.jpg" alt="Data entry on a keyboard" loading="lazy" />
-            <span class="chip">🧾 For business &amp; office work</span>
-          </div>
-          <div class="explorer-text">
-            <h2>Accounting Software</h2>
-            <div class="meta"><span class="ph">⏱ 6 weeks</span><span>👤 Excel basics helpful</span></div>
-            <ul class="skill-chips">
-              <li class="ph">QuickBooks</li><li class="ph">Sage</li><li>Invoices</li><li>Payroll basics</li><li>Bookkeeping</li><li>Reports</li>
-            </ul>
-            <a href="contact.html?package=comp-accounting" class="btn btn--primary">Enroll in Accounting <span class="arrow">→</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How classes work -->
-    <section class="section section--soft">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">How classes work</span>
-          <h2>Hands-on from day one</h2>
-        </div>
-        <div class="photo-cards">
-          <article class="photo-card reveal">
-            <div class="ph-img"><div class="clip"><img src="images/comp-desktop.jpg" alt="Student at a computer" loading="lazy" /></div><span class="badge">🖥️</span></div>
-            <div class="body"><h3>A computer each</h3><p class="ph">Every student gets their own machine.</p></div>
-          </article>
-          <article class="photo-card reveal" style="--d:.1s">
-            <div class="ph-img"><div class="clip"><img src="images/comp-group.jpg" alt="Small group around laptops" loading="lazy" /></div><span class="badge">👥</span></div>
-            <div class="body"><h3>Small classes</h3><p class="ph">Up to 8 students per class.</p></div>
-          </article>
-          <article class="photo-card reveal" style="--d:.2s">
-            <div class="ph-img"><div class="clip"><img src="images/comp-workspace.jpg" alt="Computer on a desk" loading="lazy" /></div><span class="badge">🗓️</span></div>
-            <div class="body"><h3>Flexible times</h3><p class="ph">Morning, evening, and weekend classes.</p></div>
-          </article>
-          <article class="photo-card reveal" style="--d:.3s">
-            <div class="ph-img"><div class="clip"><img src="images/comp-learning.jpg" alt="Letter tiles spelling education and learning" loading="lazy" /></div><span class="badge">📜</span></div>
-            <div class="body"><h3>Certificate</h3><p class="ph">Awarded when you complete a course.</p></div>
-          </article>
-        </div>
-        <p class="swipe-hint">← Swipe to see more →</p>
-      </div>
-    </section>
-
-    <!-- Computer packages: names, contents, and prices are placeholders -->
-    <section class="section" id="packages">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Computer packages</span>
-          <h2>Bundle and save</h2>
-        </div>
-        <div class="price-grid">
-          <article class="price-card reveal" data-tilt>
-            <div class="top"><img src="images/comp-basics.jpg" alt="" loading="lazy" /><h3>Starter Package</h3></div>
-            <div class="body">
-              <div class="price ph">$149<span> / course</span></div>
-              <p class="sub">For complete beginners</p>
-              <ul class="checklist">
-                <li>Computer Basics</li>
-                <li>Internet &amp; Email</li>
-                <li>Typing practice</li>
-                <li>Certificate</li>
-              </ul>
-              <a href="contact.html?package=comp-package&amp;plan=Starter%20Package" class="btn btn--black btn--block">Enroll in Starter</a>
-            </div>
-          </article>
-
-          <article class="price-card featured reveal" style="--d:.1s" data-tilt>
-            <span class="tag">Most Popular</span>
-            <div class="top"><img src="images/comp-office.jpg" alt="" loading="lazy" /><h3>Office Pro Package</h3></div>
-            <div class="body">
-              <div class="price ph">$249<span> / course</span></div>
-              <p class="sub">Job-ready office skills</p>
-              <ul class="checklist">
-                <li>Everything in Starter</li>
-                <li>Word, Excel &amp; PowerPoint</li>
-                <li>CV &amp; report project</li>
-                <li>Certificate</li>
-              </ul>
-              <a href="contact.html?package=comp-package&amp;plan=Office%20Pro%20Package" class="btn btn--primary btn--block">Enroll in Office Pro</a>
-            </div>
-          </article>
-
-          <article class="price-card reveal" style="--d:.2s" data-tilt>
-            <div class="top"><img src="images/comp-coding.jpg" alt="" loading="lazy" /><h3>Complete Package</h3></div>
-            <div class="body">
-              <div class="price ph">$449<span> / course</span></div>
-              <p class="sub">The full diploma track</p>
-              <ul class="checklist">
-                <li>Everything in Office Pro</li>
-                <li>Graphic Design or Web &amp; Coding</li>
-                <li>Accounting Software</li>
-                <li>Diploma certificate</li>
-              </ul>
-              <a href="contact.html?package=comp-package&amp;plan=Complete%20Package" class="btn btn--black btn--block">Enroll in Complete</a>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -268,19 +142,19 @@
           <button class="flip reveal" style="--d:.1s" type="button" aria-pressed="false">
             <span class="flip-inner">
               <span class="flip-face flip-front"><img src="images/comp-charts.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Master Excel</span></span>
-              <span class="flip-face flip-back"><span class="icon">📊</span><span class="t">Master Excel</span><span>Formulas, budgets, and charts that impress.</span></span>
+              <span class="flip-face flip-back"><span class="icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="t">Master Excel</span><span>Formulas, budgets, and charts that impress.</span></span>
             </span>
           </button>
           <button class="flip reveal" style="--d:.2s" type="button" aria-pressed="false">
             <span class="flip-inner">
               <span class="flip-face flip-front"><img src="images/comp-colors.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Design graphics</span></span>
-              <span class="flip-face flip-back"><span class="icon">🎨</span><span class="t">Design graphics</span><span>Flyers, logos, and posters for any event.</span></span>
+              <span class="flip-face flip-back"><span class="icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="13.5" cy="6.5" r="1" fill="currentColor"/><circle cx="17.5" cy="10.5" r="1" fill="currentColor"/><circle cx="8.5" cy="7.5" r="1" fill="currentColor"/><circle cx="6.5" cy="12.5" r="1" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.56-2.5 5.56-5.55C21.97 6.01 17.46 2 12 2z"/></svg></span><span class="t">Design graphics</span><span>Flyers, logos, and posters for any event.</span></span>
             </span>
           </button>
           <button class="flip reveal" style="--d:.3s" type="button" aria-pressed="false">
             <span class="flip-inner">
-              <span class="flip-face flip-front"><img src="images/comp-code.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Build websites</span></span>
-              <span class="flip-face flip-back"><span class="icon">🌐</span><span class="t">Build websites</span><span>Create and publish your own site.</span></span>
+              <span class="flip-face flip-front"><img src="images/comp-internet.jpg" alt="" loading="lazy" /><span class="hint">Flip ↻</span><span class="t">Emails &amp; internet</span></span>
+              <span class="flip-face flip-back"><span class="icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="t">Emails &amp; internet</span><span>Send emails, browse safely, and get things done online.</span></span>
             </span>
           </button>
         </div>
@@ -290,13 +164,13 @@
     <section class="section">
       <div class="container">
         <div class="cta-photo reveal zoom">
-          <img src="images/comp-study.jpg" alt="" loading="lazy" />
+          <img src="images/footer.jpg" alt="" loading="lazy" />
           <span class="eyebrow">New classes starting soon</span>
           <h2>Save your seat in the next class.</h2>
           <p>Classes are small, so seats go quickly.</p>
           <div class="actions">
             <a href="contact.html?package=comp-package" class="btn btn--primary">Enroll Now <span class="arrow">→</span></a>
-            <a href="tel:+15551234567" class="btn btn--glass ph">📞 (555) 123-4567</a>
+            <a href="tel:+254143754721" class="btn btn--glass"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0143 754 721</a>
           </div>
         </div>
       </div>
@@ -305,64 +179,35 @@
 
   <footer class="site-footer">
     <div class="footer-photos" aria-hidden="true">
-      <img src="images/hands-on-wheel.jpg" alt="" loading="lazy" />
-      <img src="images/comp-typing.jpg" alt="" loading="lazy" />
-      <img src="images/traffic-light.jpg" alt="" loading="lazy" />
-      <img src="images/comp-design.jpg" alt="" loading="lazy" />
-      <img src="images/mirror-check.jpg" alt="" loading="lazy" />
-      <img src="images/comp-coding.jpg" alt="" loading="lazy" />
+      <img src="images/footer%201.jpg" alt="" loading="lazy" />
+      <img src="images/footer%202.jpg" alt="" loading="lazy" />
+      <img src="images/footer%203.jpg" alt="" loading="lazy" />
+      <img src="images/footer%204.jpg" alt="" loading="lazy" />
+      <img src="images/footer%205.jpg" alt="" loading="lazy" />
+      <img src="images/footer%206.jpg" alt="" loading="lazy" />
     </div>
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a href="index.html" class="logo"><span class="logo-mark">K</span><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
-          <p>Driving lessons and computer courses in <span class="ph">Your City</span>.</p>
+          <a href="index.html" class="logo"><img class="logo-mark" src="images/logo.png" alt="" width="44" height="44" /><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
+          <p>Driving lessons and computer courses in Maai Mahiu.</p>
         </div>
         <div>
-          <h4>Explore</h4>
+          <h4 id="contact">Get in touch</h4>
           <ul>
-            <li><a href="lessons.html">Driving</a></li>
-            <li><a href="computers.html">Computer</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Driving</h4>
-          <ul>
-            <li><a href="lessons.html#beginner">Beginner</a></li>
-            <li><a href="lessons.html#road-test">Road Test Prep</a></li>
-            <li><a href="lessons.html#refresher">Refresher</a></li>
-            <li><a href="lessons.html#teen">Teen Drivers</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Computer</h4>
-          <ul>
-            <li><a href="computers.html#basics">Computer Basics</a></li>
-            <li><a href="computers.html#office">Microsoft Office</a></li>
-            <li><a href="computers.html#design">Graphic Design</a></li>
-            <li><a href="computers.html#coding">Web &amp; Coding</a></li>
-            <li><a href="computers.html#packages">Packages</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Get in touch</h4>
-          <ul>
-            <li><a class="ph" href="tel:+15551234567">📞 (555) 123-4567</a></li>
-            <li><a class="ph" href="mailto:info@kwamedrivingschool.com">✉️ info@kwamedrivingschool.com</a></li>
-            <li class="ph">🕑 Mon–Sat, 8am–7pm</li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+254143754721">0143 754 721</a></li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><a href="mailto:kwamedrivingschool@gmail.com">kwamedrivingschool@gmail.com</a></li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="ph">Mon–Sat, 8am–5pm</span></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span data-year></span> Kwame Driving School &amp; Computer College</span>
-        <span class="ph">License #: XXXXXXX</span>
       </div>
     </div>
   </footer>
 
+  <a class="wa-float" href="https://wa.me/254143754721?text=Hello%20Kwame%20Driving%20School" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
   <button class="to-top" type="button" aria-label="Back to top">↑</button>
   <a class="btn btn--primary mobile-cta" href="contact.html">Book or Enroll →</a>
 

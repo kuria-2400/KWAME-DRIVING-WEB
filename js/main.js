@@ -20,6 +20,8 @@
     toggle.addEventListener("click", () => setOpen(!links.classList.contains("open")));
     $$("a", links).forEach((a) => a.addEventListener("click", () => setOpen(false)));
     document.addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
+    // Keyboard users tabbing into the header should always see it
+    header.addEventListener("focusin", () => header.classList.remove("nav-hidden"));
   }
 
   const page = location.pathname.split("/").pop() || "index.html";
@@ -36,6 +38,7 @@
   const mobileCta = $(".mobile-cta");
   const parallax = $$("[data-parallax]");
   let ticking = false;
+  let lastY = window.scrollY;
 
   function onScroll() {
     const y = window.scrollY;
@@ -43,7 +46,14 @@
     const pct = max > 0 ? (y / max) * 100 : 0;
     if (bar) bar.style.width = pct + "%";
     if (car) car.style.left = pct + "%";
-    if (header) header.classList.toggle("scrolled", y > 40);
+    if (header) {
+      header.classList.toggle("scrolled", y > 40);
+      // Hide the bar while scrolling down, bring it back on any scroll up (never while the mobile menu is open)
+      if (y < 120 || header.classList.contains("menu-open")) header.classList.remove("nav-hidden");
+      else if (y > lastY + 4) header.classList.add("nav-hidden");
+      else if (y < lastY - 4) header.classList.remove("nav-hidden");
+    }
+    if (Math.abs(y - lastY) > 4) lastY = y;
     if (toTop) toTop.classList.toggle("show", y > 700);
     if (mobileCta) mobileCta.classList.toggle("show", y > 500);
     if (!reduceMotion) {
@@ -170,14 +180,14 @@
     tabs.forEach((t, i) => {
       t.addEventListener("click", () => {
         select(i);
-        stop();
+        restart();
       });
       t.addEventListener("keydown", (e) => {
         const horiz = wrap.dataset.tabs !== "vertical";
         const next = horiz ? "ArrowRight" : "ArrowDown";
         const prev = horiz ? "ArrowLeft" : "ArrowUp";
-        if (e.key === next) { e.preventDefault(); select(current + 1, true); stop(); }
-        if (e.key === prev) { e.preventDefault(); select(current - 1, true); stop(); }
+        if (e.key === next) { e.preventDefault(); select(current + 1, true); restart(); }
+        if (e.key === prev) { e.preventDefault(); select(current - 1, true); restart(); }
       });
     });
 
@@ -185,9 +195,17 @@
       clearInterval(timer);
       wrap.classList.add("paused");
     }
-    if (autoplay) {
+    // pause while hovered, resume on leave; clicks restart the 5s cycle
+    function restart() {
+      if (!autoplay) return;
+      clearInterval(timer);
+      wrap.classList.remove("paused");
       timer = setInterval(() => select(current + 1), 5000);
-      wrap.addEventListener("mouseenter", stop, { once: true });
+    }
+    if (autoplay) {
+      restart();
+      wrap.addEventListener("mouseenter", stop);
+      wrap.addEventListener("mouseleave", restart);
     }
 
     // deep links like lessons.html#road-test open the matching tab
@@ -195,7 +213,7 @@
     select(Math.max(fromHash(), 0));
     window.addEventListener("hashchange", () => {
       const n = fromHash();
-      if (n >= 0) { select(n); stop(); }
+      if (n >= 0) { select(n); restart(); }
     });
   });
 
@@ -307,6 +325,12 @@
       const on = card.classList.toggle("flipped");
       card.setAttribute("aria-pressed", String(on));
     });
+    // Mouse users: flip back as soon as the cursor leaves, even after a click
+    card.addEventListener("pointerleave", (e) => {
+      if (e.pointerType !== "mouse") return;
+      card.classList.remove("flipped");
+      card.setAttribute("aria-pressed", "false");
+    });
   });
 
   /* ---------- 3D tilt on pricing cards (mouse only) ---------- */
@@ -387,14 +411,15 @@
     const params = new URLSearchParams(location.search);
     const pkg = params.get("package");
     if (pkg) {
-      const radio = $(`input[name=package][value="${CSS.escape(pkg)}"]`, form);
+      // Students pick a whole school, not single lessons: any comp-* link means Computer, anything else Driving
+      const radio = $(`input[name=package][value="${pkg.startsWith("comp") ? "comp-package" : "driving"}"]`, form);
       if (radio) radio.checked = true;
     }
     const plan = params.get("plan");
     const msg = $("#message", form);
     if (plan && msg) msg.value = `Interested in: ${plan}`;
 
-    // Driving-only fields (permit, pickup) are hidden and disabled for
+    // Driving-only fields (marked data-only="driving") are hidden and disabled for
     // computer courses, so they're neither required nor submitted.
     function syncSchool() {
       const chosen = $("input[name=package]:checked", form);

@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pricing | Kwame Driving School &amp; Computer College</title>
-  <meta name="description" content="Driving lesson packages and computer course packages. Single lessons, road test bundles, Office Pro, and complete computer diploma packages." />
+  <meta name="description" content="Driving school fees for A2 motorcycle, B2 light vehicle, C1 light truck and PSV (D1, D2, D3) courses, plus an all-in-one computer package for Ksh 4,500." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
 </head>
 <body>
 
-  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car">🚗</span></div>
+  <div class="road-progress" aria-hidden="true"><div class="bar"></div><span class="car"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span></div>
 
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="logo">
-        <span class="logo-mark">K</span>
+        <img class="logo-mark" src="images/logo.png" alt="" width="44" height="44" />
         <span>Kwame Driving<small>&amp; Computer College</small></span>
       </a>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -26,16 +27,15 @@
         <li><a href="lessons.html">Driving</a></li>
         <li><a href="computers.html">Computer</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="contact.html" class="btn btn--primary">Book Now</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html" class="btn btn--primary">Enroll Now</a></li>
       </ul>
     </div>
   </header>
 
   <main>
     <section class="page-hero">
-      <img src="images/car-interior.jpg" alt="" data-parallax="0.25" />
+      <img src="images/pricing%20page.jpeg" alt="" style="object-position: center 70%" data-parallax="0.25" />
       <div class="container">
         <div class="crumbs"><a href="index.html">Home</a> / Pricing</div>
         <h1 class="reveal">Simple, Honest Pricing</h1>
@@ -43,183 +43,95 @@
       </div>
     </section>
 
-    <!-- Packages: all prices are placeholders -->
+    <!-- Packages -->
     <section class="section section--soft">
       <div class="container" data-tabs>
         <div class="school-switch reveal">
           <div role="tablist" aria-label="Choose a school">
-            <button role="tab" type="button" id="tab-driving" aria-controls="driving">🚗 Driving</button>
-            <button role="tab" type="button" id="tab-computer" aria-controls="computer">💻 Computer</button>
+            <button role="tab" type="button" id="tab-driving" aria-controls="driving"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Driving</button>
+            <button role="tab" type="button" id="tab-computer" aria-controls="computer"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg> Computer</button>
           </div>
         </div>
 
-        <div class="price-grid" role="tabpanel" id="driving" data-slug="driving" aria-labelledby="tab-driving">
-          <article class="price-card reveal" data-tilt data-plan="single">
-            <div class="top"><img src="images/start-engine.jpg" alt="" loading="lazy" /><h3>Single Lesson</h3></div>
-            <div class="body">
-              <div class="price ph">$65<span> / hour</span></div>
-              <p class="sub">Try it out or top up</p>
-              <ul class="checklist">
-                <li>1-hour lesson</li>
-                <li>Free pickup &amp; drop-off</li>
-                <li>Written feedback</li>
-              </ul>
-              <a href="contact.html?package=single" class="btn btn--black btn--block">Book Single</a>
-            </div>
-          </article>
-
-          <article class="price-card featured reveal" style="--d:.1s" data-tilt data-plan="starter">
-            <span class="tag">Most Popular</span>
-            <div class="top"><img src="images/hero-driver.jpg" alt="" loading="lazy" /><h3>Starter Pack</h3></div>
-            <div class="body">
-              <div class="price ph">$299<span> / 5 hrs</span></div>
-              <p class="sub">Best for new drivers</p>
-              <ul class="checklist">
-                <li>5 one-hour lessons</li>
-                <li>Beginner curriculum</li>
-                <li>Progress report each lesson</li>
-                <li>Save <span class="ph">$26</span></li>
-              </ul>
-              <a href="contact.html?package=starter" class="btn btn--primary btn--block">Book Starter Pack</a>
-            </div>
-          </article>
-
-          <article class="price-card reveal" style="--d:.2s" data-tilt data-plan="road-test">
-            <div class="top"><img src="images/traffic-light.jpg" alt="" loading="lazy" /><h3>Road Test Bundle</h3></div>
-            <div class="body">
-              <div class="price ph">$399<span> / bundle</span></div>
-              <p class="sub">Everything to pass</p>
-              <ul class="checklist">
-                <li>4 test-prep lessons</li>
-                <li>Full mock road test</li>
-                <li>Test-day warm-up</li>
-                <li>Our car for the test</li>
-              </ul>
-              <a href="contact.html?package=road-test" class="btn btn--black btn--block">Book Bundle</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- Computer packages: keep in sync with computers.html#packages -->
-        <div class="price-grid" role="tabpanel" id="computer" data-slug="computer" aria-labelledby="tab-computer" hidden>
+        <div class="price-grid price-grid--two" role="tabpanel" id="driving" data-slug="driving" aria-labelledby="tab-driving">
           <article class="price-card reveal" data-tilt>
-            <div class="top"><img src="images/comp-basics.jpg" alt="" loading="lazy" /><h3>Starter Package</h3></div>
+            <div class="top"><img src="images/open-road.jpg" alt="" loading="lazy" /><h3>A2 Motorcycle</h3></div>
             <div class="body">
-              <div class="price ph">$149<span> / course</span></div>
-              <p class="sub">For complete beginners</p>
-              <ul class="checklist">
-                <li>Computer Basics</li>
-                <li>Internet &amp; Email</li>
-                <li>Typing practice</li>
-                <li>Certificate</li>
+              <div class="price">Ksh 5,000<span> / course</span></div>
+              <p class="sub">Motorcycle licence</p>
+              <ul class="fees">
+                <li><span>Training charges</span><span>Ksh 5,000</span></li>
+                <li><span>NTSA fee</span><span>Ksh 2,800</span></li>
+                <li><span>Internal assessment</span><span>Ksh 1,000</span></li>
+                <li class="total"><span>Total</span><span>Ksh 8,800</span></li>
               </ul>
-              <a href="contact.html?package=comp-package&amp;plan=Starter%20Package" class="btn btn--black btn--block">Enroll in Starter</a>
+              <a href="contact.html?package=a2&amp;plan=A2%20Motorcycle" class="btn btn--black btn--block">Enroll</a>
             </div>
           </article>
 
-          <article class="price-card featured reveal" style="--d:.1s" data-tilt>
-            <span class="tag">Most Popular</span>
-            <div class="top"><img src="images/comp-office.jpg" alt="" loading="lazy" /><h3>Office Pro Package</h3></div>
+          <article class="price-card reveal" style="--d:.1s" data-tilt>
+            <div class="top"><img src="images/LIGHT%20VEHICLE.jpg" alt="" loading="lazy" /><h3>B2 Light Vehicle</h3></div>
             <div class="body">
-              <div class="price ph">$249<span> / course</span></div>
-              <p class="sub">Job-ready office skills</p>
-              <ul class="checklist">
-                <li>Everything in Starter</li>
-                <li>Word, Excel &amp; PowerPoint</li>
-                <li>CV &amp; report project</li>
-                <li>Certificate</li>
+              <div class="price">Ksh 14,000<span> / course</span></div>
+              <p class="sub">Cars &amp; light vehicles</p>
+              <ul class="fees">
+                <li><span>Training charges</span><span>Ksh 14,000</span></li>
+                <li><span>NTSA fee</span><span>Ksh 2,800</span></li>
+                <li><span>Internal assessment</span><span>Ksh 1,000</span></li>
+                <li class="total"><span>Total</span><span>Ksh 17,800</span></li>
               </ul>
-              <a href="contact.html?package=comp-package&amp;plan=Office%20Pro%20Package" class="btn btn--primary btn--block">Enroll in Office Pro</a>
+              <a href="contact.html?package=b2&amp;plan=B2%20Light%20Vehicle" class="btn btn--black btn--block">Enroll</a>
             </div>
           </article>
 
           <article class="price-card reveal" style="--d:.2s" data-tilt>
-            <div class="top"><img src="images/comp-coding.jpg" alt="" loading="lazy" /><h3>Complete Package</h3></div>
+            <div class="top"><img src="images/LIGHT%20TRUCK.jpeg" alt="" loading="lazy" /><h3>C1 Light Truck</h3></div>
             <div class="body">
-              <div class="price ph">$449<span> / course</span></div>
-              <p class="sub">The full diploma track</p>
-              <ul class="checklist">
-                <li>Everything in Office Pro</li>
-                <li>Graphic Design or Web &amp; Coding</li>
-                <li>Accounting Software</li>
-                <li>Diploma certificate</li>
+              <div class="price">Ksh 8,000<span> / course</span></div>
+              <p class="sub">Endorsement</p>
+              <ul class="fees">
+                <li><span>Training charges</span><span>Ksh 8,000</span></li>
+                <li><span>NTSA fee</span><span>Ksh 2,800</span></li>
+                <li><span>Internal assessment</span><span>Ksh 1,000</span></li>
+                <li class="total"><span>Total</span><span>Ksh 11,800</span></li>
               </ul>
-              <a href="contact.html?package=comp-package&amp;plan=Complete%20Package" class="btn btn--black btn--block">Enroll in Complete</a>
+              <a href="contact.html?package=c1&amp;plan=C1%20Light%20Truck%20Endorsement" class="btn btn--black btn--block">Enroll</a>
+            </div>
+          </article>
+
+          <article class="price-card reveal" style="--d:.3s" data-tilt>
+            <div class="top"><img src="images/city-traffic.jpg" alt="" loading="lazy" /><h3>PSV: D1, D2, D3</h3></div>
+            <div class="body">
+              <div class="price">Ksh 8,000<span> / course</span></div>
+              <p class="sub">Endorsement</p>
+              <ul class="fees">
+                <li><span>Training charges</span><span>Ksh 8,000</span></li>
+                <li><span>NTSA fee</span><span>Ksh 2,800</span></li>
+                <li><span>Internal assessment</span><span>Ksh 1,000</span></li>
+                <li class="total"><span>Total</span><span>Ksh 11,800</span></li>
+              </ul>
+              <a href="contact.html?package=psv&amp;plan=PSV%20(D1%2C%20D2%2C%20D3)%20Endorsement" class="btn btn--black btn--block">Enroll</a>
             </div>
           </article>
         </div>
-      </div>
-    </section>
 
-    <!-- Estimator -->
-    <section class="section" id="estimator-section">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">🚗 Driving lesson estimator</span>
-          <h2>How many driving lessons do I need?</h2>
-          <p>Answer three quick questions for a rough estimate.</p>
+        <!-- Computer packages -->
+        <div class="price-grid price-grid--single" role="tabpanel" id="computer" data-slug="computer" aria-labelledby="tab-computer" hidden>
+          <article class="price-card reveal" data-tilt>
+            <div class="top"><img src="images/comp-office.jpg" alt="" loading="lazy" /><h3>Computer Package</h3></div>
+            <div class="body">
+              <div class="price">Ksh 4,500<span> / package</span></div>
+              <p class="sub">All 4 courses included</p>
+              <ul class="checklist">
+                <li>Computer Basics</li>
+                <li>Microsoft Office</li>
+                <li>Internet &amp; Email</li>
+                <li>Graphic Design</li>
+              </ul>
+              <a href="contact.html?package=comp-package&amp;plan=Computer%20Package" class="btn btn--black btn--block">Enroll Now</a>
+            </div>
+          </article>
         </div>
-        <form class="estimator reveal" id="estimator" onsubmit="return false">
-          <div class="controls">
-            <fieldset>
-              <legend>Driving experience</legend>
-              <div class="seg">
-                <label><input type="radio" name="experience" value="never" checked /><span>Never driven</span></label>
-                <label><input type="radio" name="experience" value="some" /><span>A little practice</span></label>
-                <label><input type="radio" name="experience" value="licensed" /><span>Already licensed</span></label>
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>Main goal</legend>
-              <div class="seg">
-                <label><input type="radio" name="goal" value="test" checked /><span>Pass my road test</span></label>
-                <label><input type="radio" name="goal" value="confidence" /><span>Feel more confident</span></label>
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>Comfort behind the wheel</legend>
-              <div class="range-wrap">
-                <input type="range" id="confidence" min="1" max="5" value="2" aria-label="Comfort level from 1 (very nervous) to 5 (very confident)" />
-                <output for="confidence">Nervous</output>
-              </div>
-            </fieldset>
-          </div>
-          <div class="result" aria-live="polite">
-            <img src="images/hands-on-wheel.jpg" alt="" />
-            <small>We'd suggest</small>
-            <div class="hours" data-out="hours">—</div>
-            <h3 data-out="plan">—</h3>
-            <p data-out="note"></p>
-            <a href="contact.html" class="btn btn--primary" data-out="link">Book this <span class="arrow">→</span></a>
-          </div>
-        </form>
-        <p class="text-center muted mt-32"><small>Estimate only. Everyone learns at their own pace.</small></p>
-      </div>
-    </section>
-
-    <section class="section section--soft">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Add-ons</span>
-          <h2>Other rates</h2>
-        </div>
-        <div class="table-wrap reveal">
-          <table class="rates">
-            <thead>
-              <tr><th>Service</th><th>Details</th><th>Price</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>🏁 10-Lesson Package</td><td>Best value for beginners</td><td class="ph">$569</td></tr>
-              <tr><td>🚗 Car for Road Test</td><td>Our car + 1-hr warm-up</td><td class="ph">$150</td></tr>
-              <tr><td>🛣️ Highway Lesson</td><td>90-min merging session</td><td class="ph">$95</td></tr>
-              <tr><td>📍 Extended Pickup</td><td>Outside service area</td><td class="ph">$15</td></tr>
-              <tr><td>💻 Single Computer Course</td><td>Any one course, e.g. Excel or Design</td><td class="ph">$99+</td></tr>
-              <tr><td>👤 Private Computer Tutoring</td><td>1-hr one-on-one session</td><td class="ph">$30</td></tr>
-              <tr><td>📜 Certificate Reprint</td><td>Replacement certificate</td><td class="ph">$10</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-center muted mt-32">We accept <span class="ph">cash, card, Zelle, Cash App</span> · Packages valid <span class="ph">6 months</span></p>
       </div>
     </section>
 
@@ -236,7 +148,7 @@
           </details>
           <details>
             <summary>How many lessons will I need?</summary>
-            <p>Most beginners need 8–12 hours. Try the estimator above, and we'll refine it after your first lesson.</p>
+            <p>Most beginners need 8–12 hours. We'll give you a better estimate after your first lesson.</p>
           </details>
           <details>
             <summary>What's the cancellation policy?</summary>
@@ -257,64 +169,35 @@
 
   <footer class="site-footer">
     <div class="footer-photos" aria-hidden="true">
-      <img src="images/hands-on-wheel.jpg" alt="" loading="lazy" />
-      <img src="images/comp-typing.jpg" alt="" loading="lazy" />
-      <img src="images/traffic-light.jpg" alt="" loading="lazy" />
-      <img src="images/comp-design.jpg" alt="" loading="lazy" />
-      <img src="images/mirror-check.jpg" alt="" loading="lazy" />
-      <img src="images/comp-coding.jpg" alt="" loading="lazy" />
+      <img src="images/footer%201.jpg" alt="" loading="lazy" />
+      <img src="images/footer%202.jpg" alt="" loading="lazy" />
+      <img src="images/footer%203.jpg" alt="" loading="lazy" />
+      <img src="images/footer%204.jpg" alt="" loading="lazy" />
+      <img src="images/footer%205.jpg" alt="" loading="lazy" />
+      <img src="images/footer%206.jpg" alt="" loading="lazy" />
     </div>
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a href="index.html" class="logo"><span class="logo-mark">K</span><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
-          <p>Driving lessons and computer courses in <span class="ph">Your City</span>.</p>
+          <a href="index.html" class="logo"><img class="logo-mark" src="images/logo.png" alt="" width="44" height="44" /><span>Kwame Driving School<small>&amp; Computer College</small></span></a>
+          <p>Driving lessons and computer courses in Maai Mahiu.</p>
         </div>
         <div>
-          <h4>Explore</h4>
+          <h4 id="contact">Get in touch</h4>
           <ul>
-            <li><a href="lessons.html">Driving</a></li>
-            <li><a href="computers.html">Computer</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Driving</h4>
-          <ul>
-            <li><a href="lessons.html#beginner">Beginner</a></li>
-            <li><a href="lessons.html#road-test">Road Test Prep</a></li>
-            <li><a href="lessons.html#refresher">Refresher</a></li>
-            <li><a href="lessons.html#teen">Teen Drivers</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Computer</h4>
-          <ul>
-            <li><a href="computers.html#basics">Computer Basics</a></li>
-            <li><a href="computers.html#office">Microsoft Office</a></li>
-            <li><a href="computers.html#design">Graphic Design</a></li>
-            <li><a href="computers.html#coding">Web &amp; Coding</a></li>
-            <li><a href="computers.html#packages">Packages</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Get in touch</h4>
-          <ul>
-            <li><a class="ph" href="tel:+15551234567">📞 (555) 123-4567</a></li>
-            <li><a class="ph" href="mailto:info@kwamedrivingschool.com">✉️ info@kwamedrivingschool.com</a></li>
-            <li class="ph">🕑 Mon–Sat, 8am–7pm</li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+254143754721">0143 754 721</a></li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><a href="mailto:kwamedrivingschool@gmail.com">kwamedrivingschool@gmail.com</a></li>
+            <li class="contact-item"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="ph">Mon–Sat, 8am–5pm</span></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span data-year></span> Kwame Driving School &amp; Computer College</span>
-        <span class="ph">License #: XXXXXXX</span>
       </div>
     </div>
   </footer>
 
+  <a class="wa-float" href="https://wa.me/254143754721?text=Hello%20Kwame%20Driving%20School" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
   <button class="to-top" type="button" aria-label="Back to top">↑</button>
   <a class="btn btn--primary mobile-cta" href="contact.html">Book or Enroll →</a>
 

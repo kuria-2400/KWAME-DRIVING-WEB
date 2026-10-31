@@ -9,7 +9,6 @@ Plain HTML/CSS/JS. No build step. Open `index.html` in a browser to view it.
 | `lessons.html` | Driving: tabbed lesson explorer (photo collage per lesson), flip cards for key skills |
 | `computers.html` | Computer college: tabbed course explorer (Basics, Office, Internet, Design, Coding, Accounting), how classes work, computer packages, flip cards |
 | `pricing.html` | Driving/Computer switch for package cards (`pricing.html#computer` opens computer), driving lesson estimator, add-on rates, FAQ |
-| `about.html` | Photo collage + bio, animated stats, values cards, story timeline |
 | `contact.html` | 3-step booking wizard with photo choice cards, contact details, service-area map slot |
 
 Shared styles: `css/styles.css` · Shared behavior: `js/main.js` · Photos: `images/`
@@ -39,7 +38,6 @@ Everything respects the visitor's "reduce motion" setting.
 The photos in `images/` are free stock photos from StockSnap (CC0, no attribution
 required). They're stand-ins. Real photos of Kwame, the training car and (with
 permission) happy students will convert much better. Especially replace:
-- `about.html` collage: put a real photo of Kwame first
 - Review carousel images on `index.html`
 
 To swap a photo, drop a new file into `images/` with the same name, or change the `src`.
@@ -50,17 +48,13 @@ Everything marked with `class="ph"` is placeholder content. To see it highlighte
 while editing, add `class="show-placeholders"` to the `<body>` tag (remove it before going live).
 
 Find & replace across all pages:
-- `(555) 123-4567` and `tel:+15551234567`: real phone number
-- `info@kwamedrivingschool.com`: real email (also in the contact form's `data-email`)
 - `Your City`, `Neighborhood A/B`, `Town C`: real service area
-- `Mon–Sat 8am–7pm`: real hours
-- `License #XXXXXXX`: instructor/school license number
+- `Mon–Sat 8am–5pm`: real hours
 - Prices on `pricing.html` (and the estimator's numbers in `js/main.js`, search `BASE`)
 - Computer package names, contents and prices: on **both** `computers.html` and `pricing.html`
 - Course durations, software names (Photoshop, CorelDRAW, QuickBooks…), class size, and certificate details on `computers.html`
-- Stats (pass rate, students, years): the `data-count` values on `index.html` and `about.html`
+- Stats (pass rate, students, years): the `data-count` values on `index.html`
 - Reviews on `index.html`: use real reviews only
-- Bio and timeline years on `about.html`
 
 ## Make the booking form send emails
 1. Create a free form at https://formspree.io and copy its ID (e.g. `xyzabcd`).
