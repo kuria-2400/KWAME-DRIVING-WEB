@@ -14,10 +14,14 @@ ErrorDocument 404 /404.html
   RewriteRule ^ https://kwamedrivingschool.co.ke%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# Never serve dotfiles (.env, .git, .htaccess), SQL dumps, backups or the local test script.
-<FilesMatch "^\.|\.(sql|bak|log|ini)$|^test_db\.php$">
+# Never serve dotfiles (.env, .htaccess), SQL dumps, backups, docs or the local test script.
+<FilesMatch "^\.|\.(sql|bak|log|ini|md)$|^test_db\.php$">
   Require all denied
 </FilesMatch>
+
+# FilesMatch only sees the file's own name, so also hide anything inside a dot-folder
+# (.git/, .vscode/), except /.well-known/ which AutoSSL needs.
+RedirectMatch 404 /\.(?!well-known(/|$))
 
 # Code folders are not public; only /api is.
 RedirectMatch 404 ^/(config|includes)(/|$)

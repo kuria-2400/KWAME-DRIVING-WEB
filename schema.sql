@@ -1,7 +1,8 @@
 -- Kwame Driving School & Computer College: database schema.
 --
 -- Stores every booking/enrollment request sent from the form on contact.html
--- (course, preferred date and time, contact details, ID number, message).
+-- (course, preferred date and time, contact details, ID number, message),
+-- and the student reviews sent from the review form on index.html.
 --
 -- Local:   mysql -u root -p -e "source schema.sql"
 -- Hosting: in cPanel the database is created in the panel, so delete the
@@ -35,4 +36,25 @@ CREATE TABLE IF NOT EXISTS bookings (
   KEY idx_bookings_ip_created (ip_address, created_at),        -- rate-limit lookup
   KEY idx_bookings_status_created (status, created_at),        -- "new requests, newest first"
   KEY idx_bookings_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Student reviews from the form on index.html. New reviews wait as 'pending' until the
+-- school approves them (links in the notification email, or change status in phpMyAdmin).
+-- The home page shows the 30 newest approved reviews.
+CREATE TABLE IF NOT EXISTS reviews (
+  id               INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  full_name        VARCHAR(60)  NOT NULL,                      -- shown publicly with the review
+  course           ENUM('driving', 'comp-package') NOT NULL,
+  rating           TINYINT UNSIGNED NOT NULL,                  -- 1 to 5 stars
+  comment          VARCHAR(500) NOT NULL,
+  status           ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+  moderation_token CHAR(64)     NOT NULL,                      -- secret in the approve/reject email links
+  ip_address       VARCHAR(45)  NOT NULL,                      -- for rate limiting
+  user_agent       VARCHAR(255) NULL,
+  created_at       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_reviews_status_created (status, created_at),         -- "newest approved first"
+  KEY idx_reviews_ip_created (ip_address, created_at),         -- rate-limit lookup
+  CONSTRAINT chk_reviews_rating CHECK (rating BETWEEN 1 AND 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

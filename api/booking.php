@@ -147,19 +147,14 @@ if ($config['mail_to']) {
         'Message:',
         $message !== '' ? $message : '(none)',
     ]);
-    $headers = ['Content-Type: text/plain; charset=UTF-8'];
-    if ($config['mail_from']) {
-        $headers[] = 'From: Kwame Website <' . $config['mail_from'] . '>';
-    }
     // $email passed FILTER_VALIDATE_EMAIL, so it cannot carry header line breaks.
-    $headers[] = "Reply-To: $email";
-    if (!@mail($config['mail_to'], "New booking request $reference", $body, implode("\r\n", $headers))) {
+    if (!send_school_mail("New booking request $reference", $body, $email)) {
         error_log("[kwame-api] booking $reference saved but notification email failed");
     }
 }
 
 json_response(201, [
     'success'   => true,
-    'message'   => "Request sent! We'll call or text you within one business day to confirm.",
+    'message'   => 'Request sent! We will contact you within one business day to confirm your booking.',
     'reference' => $reference,
 ]);

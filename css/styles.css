@@ -604,6 +604,28 @@ p  { margin: 0 0 1em; }
 .carousel-dots { display: flex; gap: 8px; }
 .carousel-dots button { width: 10px; height: 10px; border-radius: 5px; border: 0; padding: 0; background: #cfd8de; cursor: pointer; transition: width 0.3s var(--ease), background 0.3s; }
 .carousel-dots button.active { width: 28px; background: var(--blue-dark); }
+/* With many reviews the dots would overflow; main.js shows "3 / 30" instead */
+.carousel-count { min-width: 64px; text-align: center; font-weight: 700; color: var(--black); font-variant-numeric: tabular-nums; }
+
+/* ---------- Review form ---------- */
+.review-cta { max-width: 860px; margin: 32px auto 0; text-align: center; }
+.review-cta > summary { list-style: none; }
+.review-cta > summary::-webkit-details-marker { display: none; }
+.review-cta[open] > summary { display: none; }
+.review-form { text-align: left; background: #fff; border-radius: 24px; padding: 32px; box-shadow: var(--shadow); }
+.review-form h3 { margin: 0; }
+.review-form .btn { justify-self: start; }
+.review-note { margin: 0; font-size: 0.9rem; }
+@media (max-width: 640px) { .review-form { padding: 24px 20px; } }
+/* Inputs run 5 → 1 and are shown reversed, so "~" can light up the chosen star and every star before it */
+.star-input { border: 0; padding: 0; margin: 0; display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
+.star-input legend { width: 100%; }
+.star-input input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.star-input label { font-size: 2.2rem; line-height: 1; color: #cfd8de; cursor: pointer; transition: color 0.15s, transform 0.15s; }
+.star-input label:hover, .star-input label:hover ~ label,
+.star-input input:checked ~ label { color: var(--blue-dark); }
+.star-input label:hover { transform: scale(1.15); }
+.star-input input:focus-visible + label { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
 
 /* ---------- Photo CTA ---------- */
 .cta-photo {
@@ -753,20 +775,6 @@ p  { margin: 0 0 1em; }
 .price-card .top::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8, 8, 10, 0.85), transparent 70%); }
 .price-card .top h3 { position: absolute; left: 24px; bottom: 14px; color: #fff; z-index: 1; margin: 0; font-size: 1.35rem; }
 .price-card .body { padding: 24px 26px 28px; display: flex; flex-direction: column; flex: 1; }
-.price-card .tag {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 2;
-  background: var(--blue);
-  color: var(--black);
-  font-weight: 800;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  border-radius: 999px;
-}
 .price { font-family: "Poppins", sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--black); line-height: 1; margin: 4px 0 6px; }
 .price span { font-size: 1rem; font-weight: 600; color: var(--muted); }
 .price-card .sub { color: var(--muted); font-size: 0.92rem; margin: 0; }
@@ -834,14 +842,12 @@ p  { margin: 0 0 1em; }
 .wizard-progress li::before { content: ""; display: block; height: 5px; border-radius: 3px; background: var(--line); margin-bottom: 8px; transition: background 0.4s; }
 .wizard-progress li.done::before, .wizard-progress li.current::before { background: var(--blue); }
 .wizard-progress li.current { color: var(--black); }
-.step-panel[hidden] { display: none; }
 .step-panel { animation: fadeUp 0.5s var(--ease); }
 .step-panel h3 { font-size: 1.5rem; margin-bottom: 18px; }
 
 .choice-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 @media (max-width: 640px) { .choice-grid { grid-template-columns: repeat(2, 1fr); } }
 .choice { position: relative; cursor: pointer; }
-.choice input { position: absolute; opacity: 0; pointer-events: none; }
 .choice .card-in {
   display: block;
   border-radius: 14px;
@@ -854,28 +860,10 @@ p  { margin: 0 0 1em; }
 .choice .label { display: block; padding: 10px 12px; font-weight: 700; font-size: 0.9rem; color: var(--black); }
 .choice:hover .card-in { transform: translateY(-3px); box-shadow: var(--shadow); }
 .choice:hover img { transform: scale(1.05); }
-.choice input:checked + .card-in { border-color: var(--blue-dark); box-shadow: 0 10px 26px rgba(10, 124, 184, 0.25); }
-.choice input:checked + .card-in::after {
-  content: "✓";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: var(--black);
-  font-weight: 800;
-  display: grid;
-  place-items: center;
-  animation: pop 0.3s var(--ease);
-}
-.choice input:focus-visible + .card-in { outline: 3px solid var(--blue); outline-offset: 2px; }
 @keyframes pop { from { transform: scale(0); } }
 
 .time-pills { display: flex; flex-wrap: wrap; gap: 10px; }
 .choice-group { font-family: "Poppins", sans-serif; font-weight: 700; color: var(--black); margin: 22px 0 10px; }
-.choice-group:first-of-type { margin-top: 0; }
 /* Booking step 1: pick a whole school (Driving or Computer); lesson cards are display-only */
 .school-choice { display: block; position: relative; cursor: pointer; margin-bottom: 14px; }
 .school-choice input { position: absolute; opacity: 0; pointer-events: none; }
@@ -927,8 +915,6 @@ p  { margin: 0 0 1em; }
 .form input:user-invalid { border-color: #e5484d; }
 .form textarea { min-height: 110px; resize: vertical; }
 .wizard-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; }
-.wizard-nav .btn--ghost[hidden] { display: none; }
-.form-note { font-size: 0.85rem; color: var(--muted); margin: 10px 0 0; }
 .form-error { color: #b42318; font-weight: 600; font-size: 0.9rem; min-height: 1.2em; margin: 12px 0 0; }
 .form-status { display: none; padding: 14px 16px; border-radius: 12px; font-weight: 600; margin-top: 16px; }
 .form-status.ok { display: block; background: rgba(31, 157, 85, 0.1); color: var(--green); }
@@ -950,13 +936,15 @@ p  { margin: 0 0 1em; }
 .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 0.8fr; gap: 36px 56px; margin-bottom: 40px; }
 @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-grid > :first-child { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
-.site-footer h4 { color: #fff; font-size: 1rem; margin-bottom: 14px; }
+.site-footer h2 { color: #fff; font-size: 1rem; letter-spacing: 0; margin-bottom: 14px; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .footer-social { display: flex; gap: 10px; }
 .footer-social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #1a1a1a; color: #fff; transition: background 0.2s, color 0.2s, transform 0.2s var(--ease); }
 .footer-social a:hover, .footer-social a:focus-visible { background: var(--blue); color: var(--black); transform: translateY(-2px); }
 .footer-social svg { width: 18px; height: 18px; }
-/* On phones, keep the footer's last line clear of the sticky "Book or Enroll" button. */
+/* Keep the bottom bar clear of the fixed back-to-top button (right edge) and, on
+   phones, the sticky "Book or Enroll" button (bottom edge). */
+@media (max-width: 1330px) { .footer-bottom { padding-right: 64px; } }
 @media (max-width: 700px) { .site-footer { padding-bottom: 96px; } }
 .site-footer li { margin-bottom: 8px; }
 .site-footer a { text-decoration: none; color: #cfd3d7; transition: color 0.2s; }
@@ -1042,6 +1030,14 @@ p  { margin: 0 0 1em; }
 .reveal.in { opacity: 1; transform: none; }
 /* once revealed, tilt cards need a snappy transform transition */
 [data-tilt].reveal.in { transition: box-shadow 0.4s var(--ease), transform 0.15s linear; transition-delay: 0s; }
+
+/* ---------- Long-form text (privacy notice) ---------- */
+.prose { max-width: 760px; }
+.prose h2 { font-size: 1.35rem; margin: 40px 0 12px; }
+.prose p, .prose li { color: #3c4043; line-height: 1.7; }
+.prose ul { padding-left: 22px; margin: 0 0 16px; }
+.prose li { margin-bottom: 6px; }
+.prose a { color: var(--blue-dark); }
 
 /* ---------- Utilities ---------- */
 .muted { color: var(--muted); }

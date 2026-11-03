@@ -23,8 +23,9 @@ function load_env(string $path): void
         if (strlen($value) >= 2 && ($quote === '"' || $quote === "'") && substr($value, -1) === $quote) {
             $value = substr($value, 1, -1);
         }
-        if ($key !== '' && getenv($key) === false) {
-            putenv("$key=$value");
+        // Kept in $_ENV, not putenv(): some shared hosts disable putenv(), which would
+        // make every API call fail before error handling is set up.
+        if ($key !== '' && getenv($key) === false && !array_key_exists($key, $_ENV)) {
             $_ENV[$key] = $value;
         }
     }
@@ -33,7 +34,10 @@ function load_env(string $path): void
 function env(string $key, ?string $default = null): ?string
 {
     $value = getenv($key);
-    return ($value === false || $value === '') ? $default : $value;
+    if ($value === false) {
+        $value = $_ENV[$key] ?? false;
+    }
+    return ($value === false || $value === '') ? $default : (string) $value;
 }
 
 function app_config(): array
@@ -61,6 +65,8 @@ function app_config(): array
             static fn (string $o): string => rtrim(trim($o), '/'),
             explode(',', env('ALLOWED_ORIGINS', ''))
         ))),
+        // Public address of the site, used to build links in emails (never trust the Host header for that)
+        'url'        => rtrim(env('APP_URL', '') ?? '', '/'),
         'mail_to'    => env('MAIL_TO'),
         'mail_from'  => env('MAIL_FROM'),
         'rate_limit' => max(1, (int) env('RATE_LIMIT_PER_HOUR', '5')),

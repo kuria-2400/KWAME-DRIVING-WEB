@@ -5,11 +5,12 @@ Plain HTML/CSS/JS. No build step. Open `index.html` in a browser to view it.
 ## Pages
 | File | What's on it |
 |---|---|
-| `index.html` | Full-screen photo slideshow, "two schools" expanding panels, driving + computer photo tiles, "why us" cards, 4-step journey, animated stats, photo gallery, review carousel |
+| `index.html` | Full-screen photo slideshow, "two schools" expanding panels, driving + computer photo tiles, "why us" cards, 3-step journey, animated stats, photo gallery, review carousel + "Rate your experience" review form |
 | `lessons.html` | Driving: tabbed lesson explorer (photo collage per lesson), flip cards for key skills |
 | `computers.html` | Computer college: tabbed course explorer (Basics, Office, Internet, Design, Coding, Accounting), how classes work, computer packages, flip cards |
 | `pricing.html` | Driving/Computer switch for package cards (`pricing.html#computer` opens computer) |
-| `contact.html` | 3-step booking wizard with photo choice cards, contact details, service-area map |
+| `contact.html` | 3-step booking wizard with photo choice cards, contact details, map pinned on plus code 2H8M+QV Maai Mahiu |
+| `privacy.html` | Privacy notice (Kenya Data Protection Act, 2019), linked from every footer |
 | `404.html` | Shown by the host for broken links |
 
 Shared styles: `css/styles.css` · Shared behavior: `js/main.js` · Photos: `images/`
@@ -50,9 +51,11 @@ Find & replace across all pages:
 - `Mon–Sat 8am–5pm`: real hours
 - Prices on `pricing.html`
 - Computer package names, contents and prices: on **both** `computers.html` and `pricing.html`
-- Course durations, software names (Photoshop, CorelDRAW, QuickBooks…), class size, and certificate details on `computers.html`
+- Course durations, software names (PowerPoint, QuickBooks…), class size, and certificate details on `computers.html`
 - Stats (pass rate, students, years): the `data-count` values on `index.html`
-- Reviews on `index.html`: use real reviews only
+- Reviews on `index.html`: the five slides in the HTML are placeholders. They show only until
+  the first real review is approved (see "Student reviews" below); delete them before launch
+  if you'd rather show no reviews than made-up ones
 
 ## PHP backend (booking form)
 The booking form on `contact.html` posts in the background to a PHP + MySQL backend.
@@ -63,10 +66,12 @@ api/csrf-token.php   GET  -> { success, token }   (the form fetches this on load
 api/booking.php      POST -> 201 { success, message, reference }
                              422 { success:false, message, errors:{field:"..."} }
                              403 bad CSRF/origin · 405 wrong method · 429 rate limited · 500 error
+api/reviews.php      student reviews (see "Student reviews" below)
+api/review-moderate.php  approve / reject page linked from the review emails
 config/config.php    reads settings from .env
 config/db.php        PDO connection to MySQL
-includes/            bootstrap (error handling, CORS, headers) + helpers (CSRF, input cleaning)
-schema.sql           creates the database and the bookings table
+includes/            bootstrap (error handling, CORS, headers) + helpers (CSRF, input cleaning, email)
+schema.sql           creates the database and the bookings + reviews tables
 test_db.php          temporary local check of PHP + MySQL setup (delete before going live)
 .env.example         copy to .env and fill in (.env is git-ignored)
 ```
@@ -84,14 +89,20 @@ on Apache. Most cPanel hosting has all of this.
 1. Create a MySQL database and user in the hosting panel.
 2. Delete the `CREATE DATABASE` and `USE` lines at the top of `schema.sql`, then import it
    (phpMyAdmin > select your database > Import).
-3. Copy `.env.example` to `.env` and fill in the database details and `MAIL_FROM`
+3. Copy `.env.example` to `.env` and fill in the database details, `APP_URL` and `MAIL_FROM`
    (use an address on your own domain so the emails aren't marked as spam).
-4. Upload the whole folder, including `.env` and the `.htaccess` files.
-5. Check the protections: opening `https://kwamedrivingschool.co.ke/config/config.php` and
-   `https://kwamedrivingschool.co.ke/.env` should both give "Not Found" or "Forbidden".
-6. Send a test booking and confirm it appears in the `bookings` table and arrives by email.
+4. Upload the site, including `.env` and the `.htaccess` files, but **not** the `.git` and
+   `.vscode` folders or `test_db.php`.
+5. In cPanel > Email Deliverability, turn on SPF and DKIM for the domain, so the booking and
+   review emails reach the Gmail inbox instead of spam.
+6. Check the protections: opening `https://kwamedrivingschool.co.ke/config/config.php`,
+   `https://kwamedrivingschool.co.ke/.env`, `/.git/config` and `/README.md` should all give
+   "Not Found" or "Forbidden".
+7. Send a test booking and a test review. Confirm both arrive by email, then approve the
+   review from its email link and check it appears on the home page.
 
-The `.htaccess` files block web access to `config/`, `includes/`, `.env`, `schema.sql` and `test_db.php`.
+The `.htaccess` files block web access to `config/`, `includes/`, `.env` and other dotfiles,
+any dot-folder such as `.git/`, `schema.sql`, `README.md` and `test_db.php`.
 On Nginx, add equivalent `deny all` rules for those paths. Don't upload `test_db.php` at all.
 
 ### Testing on your own computer (Windows)
@@ -116,7 +127,8 @@ php test_db.php
 php -S 127.0.0.1:8000
 ```
 
-Then open **http://127.0.0.1:8000/contact.html**. Not VS Code Live Server
+Then open **http://127.0.0.1:8000/** (home page and review form) or
+**http://127.0.0.1:8000/contact.html** (booking form). Not VS Code Live Server
 (port 5501) and not by double-clicking the file: neither runs PHP, so the form will show its
 error message. Use `127.0.0.1` rather than `localhost`: on Windows, `localhost` can point
 at IPv6 and fail to connect.
@@ -128,7 +140,31 @@ front of `extension_dir = "ext"`, `extension=pdo_mysql` and `extension=mbstring`
 Note: `php -S` ignores `.htaccess`, so locally `.env` and `config/` can be opened in the
 browser. That's fine on your own computer; on the real server the `.htaccess` rules apply.
 
+### Student reviews
+Students rate the school with the "Rate your experience" form under the review carousel on
+`index.html`. Reviews are stored in the `reviews` table as `pending` and **never appear on
+the site until someone approves them**.
+
+```
+api/reviews.php          GET  -> { success, reviews:[{name, course, rating, comment, date}], count, average }
+                                 (the 30 newest approved reviews; the carousel loads these)
+                         POST -> 201 { success, message } · 422 field errors · 429 > 3 reviews per IP per day
+api/review-moderate.php  the Approve / Reject page linked from the "New review" email
+```
+
+- Each new review emails `MAIL_TO` a private link. Opening it shows the review; press
+  **Approve & publish** or **Reject**. The same link can later remove a published review.
+  Don't forward these emails: anyone with the link can approve or remove that review.
+- If email isn't working, moderate in phpMyAdmin instead: in the `reviews` table set
+  `status` to `approved` or `rejected`.
+- The carousel shows the 30 newest approved reviews, each with one of the school's own photos
+  for its course. The "Average review" stat shows the real average of all approved reviews.
+- Already have a database? Run only the `CREATE TABLE IF NOT EXISTS reviews` part of
+  `schema.sql` (phpMyAdmin > SQL).
+
 Bookings hold ID numbers, which are personal data: keep database access limited to staff.
+`privacy.html` explains how this data is used. If you change what the form collects or
+where bookings go, update it to match.
 
 ## Domain
 The site lives at **https://kwamedrivingschool.co.ke**. The domain is written into the

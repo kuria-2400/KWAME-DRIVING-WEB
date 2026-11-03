@@ -85,6 +85,7 @@
     const target = parseFloat(el.dataset.count);
     const decimals = (el.dataset.count.split(".")[1] || "").length;
     const suffix = el.dataset.suffix || "";
+    el.dataset.counted = "1";
     if (reduceMotion) {
       el.textContent = target.toFixed(decimals) + suffix;
       return;
@@ -218,13 +219,22 @@
   });
 
   /* ---------- Carousel (reviews) ---------- */
-  $$("[data-carousel]").forEach((root) => {
+  // Wires up whatever slides are in the track; call it again after replacing them.
+  function initCarousel(root) {
     const track = $(".carousel-track", root);
     const slides = [...track.children];
     const dotsWrap = $(".carousel-dots", root);
     let i = 0;
     let timer;
-    const dots = slides.map((_, n) => {
+    dotsWrap.textContent = "";
+    // More than 8 dots won't fit on a phone, so show a "3 / 30" counter instead
+    const counter = slides.length > 8 ? document.createElement("span") : null;
+    if (counter) {
+      counter.className = "carousel-count";
+      counter.setAttribute("aria-live", "polite");
+      dotsWrap.appendChild(counter);
+    }
+    const dots = counter ? [] : slides.map((_, n) => {
       const b = document.createElement("button");
       b.type = "button";
       b.setAttribute("aria-label", `Show review ${n + 1}`);
@@ -236,22 +246,30 @@
       i = (n + slides.length) % slides.length;
       track.style.transform = `translateX(${-100 * i}%)`;
       dots.forEach((d, k) => d.classList.toggle("active", k === i));
+      if (counter) counter.textContent = `${i + 1} / ${slides.length}`;
       slides.forEach((s, k) => s.setAttribute("aria-hidden", String(k !== i)));
     }
     function restart() {
       clearInterval(timer);
       if (!reduceMotion) timer = setInterval(() => show(i + 1), 7000);
     }
-    $(".prev", root).addEventListener("click", () => { show(i - 1); restart(); });
-    $(".next", root).addEventListener("click", () => { show(i + 1); restart(); });
-    root.addEventListener("mouseenter", () => clearInterval(timer));
-    root.addEventListener("mouseleave", restart);
+    // Re-running replaces the old listeners instead of stacking a second set
+    const ctl = new AbortController();
+    if (root._carousel) root._carousel.abort();
+    root._carousel = ctl;
+    const on = (el, type, fn) => el.addEventListener(type, fn, { signal: ctl.signal });
+    ctl.signal.addEventListener("abort", () => clearInterval(timer));
+
+    on($(".prev", root), "click", () => { show(i - 1); restart(); });
+    on($(".next", root), "click", () => { show(i + 1); restart(); });
+    on(root, "mouseenter", () => clearInterval(timer));
+    on(root, "mouseleave", restart);
 
     // swipe
     let startX = null;
     const vp = $(".carousel-viewport", root);
-    vp.addEventListener("pointerdown", (e) => (startX = e.clientX));
-    vp.addEventListener("pointerup", (e) => {
+    on(vp, "pointerdown", (e) => (startX = e.clientX));
+    on(vp, "pointerup", (e) => {
       if (startX === null) return;
       const dx = e.clientX - startX;
       if (Math.abs(dx) > 50) { show(i + (dx < 0 ? 1 : -1)); restart(); }
@@ -259,7 +277,149 @@
     });
     show(0);
     restart();
+  }
+  $$("[data-carousel]").forEach(initCarousel);
+
+  /* ---------- Posting forms to the PHP backend ---------- */
+  // The API needs a CSRF token tied to the visitor's session. The pages are static HTML,
+  // so each form fetches one from api/csrf-token.php (which starts the session cookie).
+  function tokenLoader(csrf) {
+    return () =>
+      fetch("api/csrf-token.php", { credentials: "same-origin", headers: { Accept: "application/json" } })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((reply) => { if (reply && reply.token) csrf.value = reply.token; })
+        .catch(() => {});
+  }
+  // POSTs the form; if the session expired meanwhile (403), gets a fresh token and tries once more
+  async function postForm(form, csrf, loadToken) {
+    const send = () => fetch(form.getAttribute("action"), {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { Accept: "application/json", "X-CSRF-Token": csrf.value },
+      body: new FormData(form),
+    });
+    if (!csrf.value) await loadToken();
+    let res = await send();
+    if (res.status === 403) {
+      csrf.value = "";
+      await loadToken();
+      res = await send();
+    }
+    return res;
+  }
+
+  /* ---------- Student reviews (api/reviews.php) ---------- */
+  // Our own photos, matched to the course each review is about.
+  const REVIEW_PHOTOS = {
+    driving: ["IMAGE%205.jpeg", "step-keys.jpg", "DRIVING%201.jpeg", "PARKING.jpeg"],
+    "comp-package": ["comp-hero.jpg", "comp-basics-1.jpg", "comp-office-student.jpg", "comp-lab-keys.jpg"],
+  };
+  const COURSE_LABELS = { driving: "Driving school student", "comp-package": "Computer college student" };
+
+  function reviewSlide(r, n) {
+    const slide = document.createElement("div");
+    slide.className = "review";
+    const photos = REVIEW_PHOTOS[r.course] || REVIEW_PHOTOS.driving;
+    const img = document.createElement("img");
+    img.src = "images/" + photos[n % photos.length];
+    img.alt = "";
+    img.loading = "lazy";
+    const text = document.createElement("div");
+    text.className = "text";
+    const stars = document.createElement("div");
+    stars.className = "stars";
+    stars.setAttribute("aria-label", `${r.rating} star${r.rating === 1 ? "" : "s"}`);
+    stars.textContent = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+    const quote = document.createElement("blockquote");
+    quote.textContent = `"${r.comment}"`;
+    const who = document.createElement("div");
+    who.className = "who";
+    const name = document.createElement("strong");
+    name.textContent = r.name;
+    const role = document.createElement("small");
+    role.textContent = COURSE_LABELS[r.course] || "";
+    who.append(name, role);
+    text.append(stars, quote, who);
+    slide.append(img, text);
+    return slide;
+  }
+
+  $$("[data-reviews]").forEach((root) => {
+    fetch(root.dataset.reviews, { credentials: "same-origin", headers: { Accept: "application/json" } })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((reply) => {
+        // No approved reviews yet (or no PHP, e.g. a static preview): keep the slides in the HTML
+        if (!reply || !reply.success || !reply.reviews || !reply.reviews.length) return;
+        $(".carousel-track", root).replaceChildren(...reply.reviews.slice(0, 30).map(reviewSlide));
+        initCarousel(root);
+        // The hero rating and the "Average review" stat follow the real reviews
+        const average = reply.average.toFixed(1);
+        $$("[data-review-average]").forEach((el) => {
+          el.classList.remove("ph");
+          if (!("count" in el.dataset)) {
+            el.textContent = "★ " + average; // plain text, not an animated counter
+            return;
+          }
+          el.dataset.count = average;
+          if (el.dataset.counted) el.textContent = average + (el.dataset.suffix || "");
+        });
+      })
+      .catch(() => {});
   });
+
+  const reviewForm = $("form[data-review-form]");
+  if (reviewForm) {
+    const err = $(".form-error", reviewForm);
+    const status = $(".form-status", reviewForm);
+    const submit = $("[data-submit]", reviewForm);
+    const csrf = $("input[name=csrf_token]", reviewForm);
+    const loadToken = tokenLoader(csrf);
+    // Only fetch a token (and start a session) once someone opens the form
+    reviewForm.closest("details").addEventListener("toggle", (e) => {
+      if (e.target.open && !csrf.value) loadToken();
+    });
+
+    function problem() {
+      const data = new FormData(reviewForm);
+      if (!data.get("rating")) return "Please choose a star rating.";
+      if (String(data.get("name") || "").trim().length < 2) return "Please enter your name.";
+      if (!data.get("course")) return "Please choose what you studied.";
+      if (String(data.get("comment") || "").trim().length < 10) return "Please write a few words about your experience (at least 10 characters).";
+      return "";
+    }
+
+    reviewForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.className = "form-status";
+      status.textContent = "";
+      err.textContent = problem();
+      if (err.textContent) return;
+
+      submit.disabled = true;
+      const label = submit.textContent;
+      submit.textContent = "Sending…";
+      try {
+        const res = await postForm(reviewForm, csrf, loadToken);
+        const reply = await res.json().catch(() => ({}));
+        if (!res.ok || reply.success !== true) {
+          throw Object.assign(new Error(reply.message || res.statusText), { shown: res.status === 422 || res.status === 429 || res.status === 403 });
+        }
+        reviewForm.innerHTML = `
+          <div class="success">
+            <div class="check">✓</div>
+            <h3>Thank you for your review!</h3>
+            <p class="muted">It will appear here once the school has checked it.</p>
+          </div>`;
+      } catch (error) {
+        status.textContent = error.shown && error.message
+          ? error.message
+          : "Something went wrong sending your review. Please try again later.";
+        status.classList.add("err");
+        submit.disabled = false;
+        submit.textContent = label;
+      }
+    });
+  }
 
   /* ---------- Flip cards: tap to flip on touch ---------- */
   $$(".flip").forEach((card) => {
@@ -326,7 +486,14 @@
     form.addEventListener("change", (e) => e.target.name === "package" && syncSchool());
     syncSchool();
     const date = $("#date", form);
-    if (date) date.min = new Date().toISOString().split("T")[0];
+    // Same window the server accepts: today up to one year ahead, in the visitor's local date
+    // (toISOString() would give the UTC date, which is yesterday in Kenya before 3am)
+    const ymd = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    if (date) {
+      const today = new Date();
+      date.min = ymd(today);
+      date.max = ymd(new Date(today.getFullYear() + 1, today.getMonth(), today.getDate()));
+    }
 
     function render() {
       panels.forEach((p, i) => (p.hidden = i !== step));
@@ -360,16 +527,10 @@
     back.addEventListener("click", () => { step--; render(); });
     render();
 
-    // The PHP backend (api/booking.php) needs a CSRF token tied to this visitor's
-    // session. The page is static HTML, so fetch one now.
+    // Fetch the CSRF token (and start the session cookie) only once the visitor starts filling in the form
     const csrf = $("input[name=csrf_token]", form);
-    function loadToken() {
-      return fetch("api/csrf-token.php", { credentials: "same-origin", headers: { Accept: "application/json" } })
-        .then((res) => (res.ok ? res.json() : null))
-        .then((reply) => { if (reply && reply.token) csrf.value = reply.token; })
-        .catch(() => {});
-    }
-    loadToken();
+    const loadToken = tokenLoader(csrf);
+    form.addEventListener("focusin", () => { if (!csrf.value) loadToken(); }, { once: true });
 
     // Sends the request in the background; the visitor stays on the page.
     form.addEventListener("submit", async (e) => {
@@ -377,19 +538,14 @@
       // Enter in an earlier step submits the form natively; treat it as "Next"
       if (step < panels.length - 1) return advance();
       status.className = "form-status";
+      status.textContent = "";
       if (!valid()) return;
 
       submit.disabled = true;
       const label = submit.textContent;
       submit.textContent = "Sending…";
       try {
-        if (!csrf.value) await loadToken();
-        const res = await fetch(form.getAttribute("action"), {
-          method: "POST",
-          credentials: "same-origin",
-          headers: { Accept: "application/json", "X-CSRF-Token": csrf.value },
-          body: new FormData(form),
-        });
+        const res = await postForm(form, csrf, loadToken);
         const reply = await res.json().catch(() => ({}));
         if (!res.ok || reply.success !== true) {
           // 422 = a field failed server-side checks; the server says which
@@ -399,7 +555,7 @@
           <div class="success">
             <div class="check">✓</div>
             <h3>Request sent!</h3>
-            <p class="muted">We'll call or text you within one business day to confirm your lesson.</p>
+            <p class="muted">We will contact you within one business day to confirm your booking.</p>
             <p class="muted">Your reference: <strong data-ref></strong></p>
             <a href="index.html" class="btn btn--black">Back to home</a>
           </div>`;

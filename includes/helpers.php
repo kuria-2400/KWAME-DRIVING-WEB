@@ -164,6 +164,45 @@ function clean_text(mixed $value, int $maxLength): string
     return mb_substr(trim($value), 0, $maxLength);
 }
 
+/* ---------- Email ---------- */
+
+/**
+ * Plain-text UTF-8 email to the school via PHP mail(). Returns false if it couldn't be handed over.
+ * Sets the envelope sender (-f) to MAIL_FROM so SPF/DKIM for the site's domain apply
+ * and Gmail doesn't file the message as spam.
+ */
+function send_school_mail(string $subject, string $body, ?string $replyTo = null): bool
+{
+    $config = app_config();
+    $headers = [
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+    ];
+    $params = '';
+    $from = $config['mail_from'];
+    if ($from && filter_var($from, FILTER_VALIDATE_EMAIL)) {
+        $headers[] = 'From: Kwame Website <' . $from . '>';
+        $params = '-f' . $from;
+    }
+    // Callers pass only addresses that passed FILTER_VALIDATE_EMAIL, so no header line breaks.
+    if ($replyTo) {
+        $headers[] = "Reply-To: $replyTo";
+    }
+    return @mail((string) $config['mail_to'], mb_encode_mimeheader($subject, 'UTF-8'), $body, implode("\r\n", $headers), $params);
+}
+
+/** Absolute URL of a file in /api, for links in emails. Uses APP_URL; falls back to this request's host for local testing. */
+function api_url(string $file): string
+{
+    $base = app_config()['url'];
+    if ($base === '') {
+        $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+        $base = ($https ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+    }
+    return "$base/api/$file";
+}
+
 function client_ip(): string
 {
     // REMOTE_ADDR only: forwarded headers can be faked by the client.

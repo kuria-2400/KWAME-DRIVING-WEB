@@ -91,5 +91,17 @@ if ($exists) {
     }
 }
 
-echo str_repeat('-', 40) . PHP_EOL . ($failed ? 'Some checks failed: see [FAIL] lines above.' : 'All good: the booking form can save to this database.') . PHP_EOL;
+// 5. Reviews table (the review form and carousel on index.html)
+$reviewsExist = (bool) $pdo->query("SHOW TABLES LIKE 'reviews'")->fetchColumn();
+report($reviewsExist, 'Table reviews exists', $reviewsExist ? '' : 'import the reviews part of schema.sql');
+if ($reviewsExist) {
+    $need = ['id', 'full_name', 'course', 'rating', 'comment', 'status', 'moderation_token', 'ip_address', 'user_agent', 'created_at', 'updated_at'];
+    $missing = array_diff($need, $pdo->query('SHOW COLUMNS FROM reviews')->fetchAll(PDO::FETCH_COLUMN));
+    report(!$missing, 'Reviews table has all columns', $missing ? 'missing: ' . implode(', ', $missing) : '');
+    foreach ($pdo->query('SELECT status, COUNT(*) AS n FROM reviews GROUP BY status')->fetchAll() as $row) {
+        echo "       reviews {$row['status']}: {$row['n']}" . PHP_EOL;
+    }
+}
+
+echo str_repeat('-', 40) . PHP_EOL . ($failed ? 'Some checks failed: see [FAIL] lines above.' : 'All good: the booking and review forms can save to this database.') . PHP_EOL;
 exit($failed ? 1 : 0);
